@@ -7,6 +7,16 @@ const LiveMiddle = ({ marketData }) => {
   const [activeToggle, setActiveToggle] = useState(null);
   const [selectedValue, setSelectedValue] = useState("");
 
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSuspended((prev) => !prev);
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
   const handleBackToggle = (marketIndex, playerIndex) => {
     setOpenMenu((prev) =>
       prev?.marketIndex === marketIndex && prev?.playerIndex === playerIndex
