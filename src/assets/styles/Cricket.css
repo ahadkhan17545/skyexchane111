@@ -1,0 +1,63 @@
+.Cricket-wrap{
+    width: 100%;
+    height: 85.5vh;
+    margin: auto;
+    padding: 0px 25px;
+    display: flex;
+    gap: 12px;
+}
+
+.multicard {
+  width: 50%;
+  height: 130px;
+  border-radius: 8px;
+  margin-top: 20px;
+  border: 1px solid #7e97a7;
+  padding: 8px;
+  margin-top: 130px;
+  background-color: white;
+}
+.multicard h3 {
+  text-align: center;
+  color: #7e97a7;
+  font-size: 5.3333333333vw;
+  margin-top: 20px;
+}
+.multicard h5 {
+  margin-top: 10px;
+  font-size: 4.2666666667vw;
+}
+.multicard {
+  margin-top: 150px;
+  margin-left: 320px;
+}
+
+.multicard-main{
+  display: none !important;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .Cricket-wrap{
+      padding: 0px;
+    }
+
+    .multicard-main{
+      display: flex !important;
+    }
+
+    .Middle-wraper-multi{
+      display: none;
+    }
+
+
+    .multicard {
+      width: 95%;
+      margin: auto;
+      margin-top: 100px;
+      height: auto;
+      font-family: sans-serif;
+
+    }
+
+  }

@@ -1,0 +1,50 @@
+.Menu-select-box {
+  width: 260px;
+  height: 100%;
+  background-color: white;
+  font-family: Arial, sans-serif;
+}
+
+.Menu-select-box ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.Menu-select-box li {
+  font-size: 12px;
+  cursor: pointer;
+}
+.Menu-select-box li a{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 5px 10px;
+  color: black;
+}
+
+.Menu-select-box .menu-header {
+  font-weight: 500;
+  color: white;
+  background-color: black;
+  font-size: 13px;
+}
+
+.Menu-select-box .menu-header a{
+  color: white !important;
+}
+
+.Menu-select-box .menu-item {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee1c0;
+}
+
+.Menu-select-box .menu-item:hover {
+  background-color: #eee1c06e;
+}
+
+@media only screen and (max-width: 800px) {
+  .Menu-select-box{
+    display: none;
+  }
+}

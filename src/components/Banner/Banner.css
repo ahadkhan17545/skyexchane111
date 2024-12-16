@@ -1,0 +1,100 @@
+.slider-container {
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+
+.slide {
+  position: relative;
+  text-align: center;
+}
+
+.slide-image {
+  width: 100%;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+  color: #fff;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #f8f8f8;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 10;
+}
+
+.desk-marquee .marquee-box {
+  line-height: 25px;
+  height: 25px;
+  border-bottom: 0.5px solid white;
+  border-top: 0.5px solid white;
+}
+
+.desk-marquee .marquee-box h4:after {
+  height: 24.1px;
+}
+
+.desk-marquee .marquee-box h4::before {
+  height: 17px;
+  width: 17px;
+  top: 4px;
+}
+
+.desk-marquee .marquee-box h4 {
+  display: flex;
+  flex-basis: 72px;
+  font-size: 12px;
+  top: 0;
+  padding-left: 10px;
+}
+
+
+
+.desk-marquee .marquee .js-marquee a {
+  font-size: 12px;
+  z-index: 9999;
+  margin-top: 0px;
+}
+
+.mobile-marquee .marquee-box {
+  position: static;
+}
+
+.mobile-marquee{
+  display: none;
+}
+
+.desk-marquee{
+  display: none;
+}
+
+.desk-marquee.login-marquee{
+  display: block;
+}
+
+@media only screen and (max-width: 800px) {
+  .desk-marquee.login-marquee{
+    display: none;
+  }
+  .mobile-marquee{
+    display: none;
+  }
+  .mobile-marquee.login-marquee{
+    display: block;
+  }
+  .slider-container {
+    margin-top: 49px;
+  }
+}

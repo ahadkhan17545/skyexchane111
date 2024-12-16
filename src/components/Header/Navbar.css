@@ -1,0 +1,572 @@
+/* General Styling */
+.navbar {
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  color: #fff;
+}
+
+/* Top Navbar */
+.navbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 25px;
+  background: #000;
+  background-image: linear-gradient(180deg, #383838 0%, #010101 100%);
+  height: 75px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 100%;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: bold;
+  color: #f8c70c;
+  margin-left: 10px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 4px;
+  width: 280px;
+  position: relative;
+  height: 25px;
+}
+
+.search-icon {
+  color: #121212;
+  font-size: 16px;
+  left: 5px;
+  position: absolute;
+}
+
+.search-close {
+  color: #121212;
+  font-size: 16px;
+  right: 0px;
+  position: absolute;
+  height: 100%;
+  width: 25px;
+  background-color: #edeced;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-bar input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: black;
+  padding: 5px;
+  font-size: 12px;
+  outline: none;
+  padding-left: 25px;
+}
+
+/* Auth Section */
+.auth-container {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.auth-input {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: white;
+  color: black;
+  width: 130px;
+}
+
+.validation {
+  font-size: 14px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 130px;
+}
+.validation input {
+  width: 100%;
+  background-color: white;
+  color: black;
+  font-size: 12px;
+}
+
+.validation-number {
+  font-weight: bold;
+  position: absolute;
+  right: 10px;
+  color: black;
+}
+
+.auth-btn {
+  padding: 0px 15px;
+  height: 25px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+}
+
+.login-btn {
+  background-color: #e83523;
+  background-image: linear-gradient(-180deg, #f72424 0%, #bb1c00 100%);
+  color: white;
+}
+
+.login-btn svg {
+  font-size: 16px;
+}
+
+.signup-btn {
+  background-color: #666;
+  background-image: linear-gradient(-180deg, #666666 0%, #333333 100%);
+  color: white;
+}
+
+/* Bottom Navbar */
+.navbar-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 25px;
+  height: 30px;
+  background-image: linear-gradient(180deg, #ffcc2e 0%, #ffbd14 100%);
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  height: 30px;
+}
+
+.navbar-menu li a {
+  color: black;
+  text-decoration: none;
+  position: relative;
+  font-size: 13px;
+  color: black;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 100%;
+  border-right: 1px solid #cc9a15;
+  padding: 0px 10px;
+}
+
+.navbar-menu li .active {
+  color: #000;
+  background: #ffdc7a;
+  box-shadow: inset 0 0px 5px 0 rgba(83, 33, 33, 0.5);
+}
+
+.badge {
+  color: white;
+  font-size: 12px;
+  min-width: 33px;
+  height: 12px;
+  position: absolute;
+  top: -5px;
+  right: 2px;
+  font-size: 10px;
+  line-height: 12px;
+  background-image: linear-gradient(180deg, #fb3434 0%, #e80505 100%);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.badge-text {
+  width: 50%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.bach-box {
+  height: 100%;
+  width: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.time-zone {
+  font-size: 12px;
+  color: #634b08;
+}
+
+.btn-one-click {
+  background-color: #333;
+  color: #ffc21d;
+  padding: 0px 15px;
+  border-radius: 0px;
+  cursor: pointer;
+  height: 31px;
+  border: none;
+  margin-top: -3px;
+  font-weight: bold;
+  font-size: 12px;
+  border-top: 3px solid #ffc21d;
+}
+
+.settings {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  cursor: pointer;
+  color: black;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.settings-icon {
+  font-size: 14px;
+}
+
+.logo_search_box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.user-section svg {
+  color: #f8c70c;
+  margin-right: 8px;
+  font-size: 13px;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+}
+
+.account-wrap {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.main-wallet a {
+  text-decoration: none;
+  font-size: 12px;
+  color: #cc9a15;
+  height: auto;
+  line-height: initial;
+  border: 0;
+  border-radius: 4px 0 0 4px;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  padding: 0px 7px;
+  height: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  background-color: #393939;
+  display: flex;
+  align-items: center;
+  padding-right: 0px;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+.main-wallet a span {
+  border: 1px solid rgba(255, 182, 0, 0.5);
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 0px 8px;
+  border-radius: 3px;
+  display: flex;
+  gap: 2px;
+  width: 30px;
+}
+.main-wallet button {
+  height: 25px;
+  width: 25px;
+  border: none;
+  border-left: 1px solid black;
+  background-color: rgb(82 82 82);
+  border-radius: 0 4px 4px 0;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-wallet button svg {
+  color: #cc9a15;
+  font-size: 16px;
+  transform: scaleX(-1);
+}
+.my-account button {
+  font-size: 12px;
+  color: #cc9a15;
+  height: auto;
+  line-height: initial;
+  border: 0;
+  border-radius: 4px 0 0 4px;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  padding: 0px 7px;
+  height: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  background-color: #393939;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: sans-serif;
+  cursor: pointer;
+  border: 1px solid black;
+  position: relative;
+}
+
+.my-account-doropdown {
+  position: absolute;
+  width: 220px;
+  background-color: #fff;
+  border-radius: 4px;
+  top: 24px;
+  left: -9.2em;
+  z-index: 99999;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
+  padding-bottom: 4px;
+}
+.my-account-doropdown ul h4 {
+  height: 33px;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  position: relative;
+  border-bottom: 1px solid #7e97a7;
+  color: #3b5160;
+  font-weight: 600;
+}
+.sp1 {
+  background-color: #3b5160;
+  padding: 1px 3px;
+  margin-left: 5px;
+  font-weight: bold;
+  color: white;
+  border-radius: 2px;
+}
+.sp2 {
+  position: absolute;
+  right: 5px;
+  font-weight: 500;
+  font-size: 11.5px;
+  border-left: 1px solid #adc0cc;
+  height: 33px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.my-account-doropdown ul li {
+  width: 100%;
+  list-style: none;
+}
+
+.my-account-doropdown ul li a {
+  border-bottom: 1px solid #e0e6e6;
+  display: flex;
+  width: 100% !important;
+  margin-bottom: 1px;
+  padding: 5px 10px;
+  color: #1e1e1e;
+  text-decoration: none;
+  font-size: 12px;
+}
+.my-account-doropdown ul li a:hover {
+  background-color: #eff2f2;
+}
+
+.my-account-doropdown ul button {
+  width: 93%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  background-color: #7e97a7;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 12.5px;
+}
+
+.mobile-auth-btn {
+  display: none;
+}
+
+.li-tv_bet-main{
+  display: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .auth-container {
+    display: none;
+  }
+  .search-bar {
+    display: none;
+  }
+  .account-wrap {
+    display: none;
+  }
+  .navbar-top {
+    height: 49px;
+    padding: 0px 10px;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+  }
+  .navbar-bottom {
+    display: none;
+  }
+
+  .navbar-logo img {
+    height: 40px !important;
+    width: 40px !important;
+  }
+
+  .mobile-auth-btn {
+    display: flex;
+    gap: 3px;
+    width: 55%;
+    justify-content: flex-end;
+  }
+  .mobile-auth-btn a {
+    background-image: linear-gradient(-180deg, #666666 0%, #333333 100%);
+    width: 29vw;
+    height: 8.5333333333vw;
+    border: 0.2666666667vw solid #000;
+    box-shadow: inset 0 0.2666666667vw 0 0 rgba(255, 255, 255, 0.5);
+    line-height: 8.5333333333vw;
+    padding: 0;
+    color: #fff;
+    border-radius: 1.0666666667vw;
+    margin-top: 0.2666666667vw;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .mobile-auth-btn a:last-child {
+    background-image: linear-gradient(-180deg, #f72424 0%, #bb1c00 100%);
+    border: 0.2666666667vw solid #710b0b;
+  }
+  .user-logged-in {
+    display: none;
+  }
+
+  .li-tv_bet-main {
+    display: none;
+    align-items: center;
+    list-style: none;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .li-tv_bet-main.user-logged-in{
+    display: flex;
+  }
+
+  .main-wallet-mobile a {
+    flex-wrap: wrap;
+    height: 8vw;
+    line-height: 3.2vw;
+    font-size: 2.6666666667vw;
+  }
+
+  .main-wallet-mobile button {
+    height: 8vw;
+    width: 8vw;
+    box-shadow: inset 0 0.2666666667vw 0 0 rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, .1);
+  }
+  .main-wallet-mobile a span {
+    height: 3.7333333333vw;
+    font-size: 2.9333333333vw;
+    line-height: 3.7333333333vw;
+    border-radius: 0.8vw;
+    padding: 0 2.1333333333vw;
+    width: auto;
+    margin-left: 30px;
+    background-color: rgba(255, 255, 255, .1);
+  }
+
+  .li-tv_bet {
+    min-width: 29.3333333333vw;
+    max-width: 31.2vw;
+    margin-left: -1px;
+    display: flex;
+    align-items: center;
+
+    color: #1e1e1e;
+    height: 8vw;
+    font-weight: bold;
+    border: 0.2666666667vw solid rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 0.2666666667vw 0 0 rgba(255, 255, 255, 0.3);
+    border-radius: 1.0666666667vw;
+    color: #634b08;
+    padding: 1.6vw 1.8666666667vw;
+    font-size: 3.4666666667vw;
+    color: #ffb200;
+    border: 1px solid #000;
+    background-color: rgba(255, 255, 255, 0.1);
+    justify-content: center;
+  }
+
+  .li-tv_bet img {
+    width: 5.3333333333vw;
+    height: 5.0666666667vw;
+    margin-right: 1.3333333333vw;
+  }
+
+  .mobile-setting{
+    height: 8vw;
+    width: 8vw;
+ 
+    color: #ffb200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.2666666667vw solid rgba(0, 0, 0, .25);
+    box-shadow: inset 0 0.2666666667vw 0 0 rgba(255, 255, 255, .3);
+    border-radius: 1.0666666667vw;
+    padding: 1.6vw 1.8666666667vw;
+    background-color: rgba(255, 255, 255, .1);
+  }
+
+  .mobile-setting svg{
+    font-size: 3.4666666667vw;
+  }
+}

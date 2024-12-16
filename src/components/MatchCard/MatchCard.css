@@ -1,0 +1,198 @@
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  margin-top: 8px;
+  
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+ 
+}
+
+.card-container .card:first-child{
+  grid-column: span 2;
+}
+.card-container .card:nth-child(2){
+  grid-column: span 2;
+}
+.card-container .card:nth-child(3){
+  grid-column: span 2;
+}
+
+.card-container .card:nth-child(4){
+  grid-column: span 2;
+}
+
+.card-container .card:nth-child(7){
+  grid-column: span 2;
+}
+
+.live_Match {
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  right: 0;
+  width: 120px;
+  padding: 6px;
+  background-image: linear-gradient(
+    180deg,
+    #000000 0%,
+    rgba(0, 0, 0, 0.7) 82%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.live_Match .badge {
+  left: 6px;
+  top: 6px;
+  height: 20px;
+  width: 60px;
+}
+.live_Match .badge-text {
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0px;
+  color: #fff;
+  width: 100%;
+  height: 35px;
+  background-image: linear-gradient(
+    270deg,
+    rgba(69, 94, 104, 0) 4%,
+    #000000 97%
+  );
+  border-bottom: 5px solid #ffb80c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  font-family: sans-serif;
+}
+
+.card-button {
+  height: 31px;
+  background-color: transparent;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  padding: 0px 10px;
+  font-size: 13px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+  background-image: url(../../assets/images/sky_btn.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left;
+  position: relative;
+  z-index: 1;
+  text-indent: 15px;
+}
+
+.card-button::after {
+  position: absolute;
+  content: "";
+  background-color: #ffb80c;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 17px;
+  z-index: -1;
+}
+
+.live_Match_lists_wrapper {
+  margin-top: 30px;
+}
+
+.live_Match_lists {
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  font-family: sans-serif;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.live_Match_lists span {
+  background-color: white;
+  color: black;
+  padding: 3px 5px;
+  border-radius: 4px;
+}
+
+@media only screen and (max-width: 800px) {
+  .card-container{
+    margin-top: -4px;
+    padding: 5px;
+    grid-gap: 5px;
+    grid-template-columns: 1fr;
+  }
+  .card-image {
+    height: 135px;
+  }
+  .live_Match .badge {
+    height: 15px;
+  }
+  .live_Match{
+    width: 80px;
+  }
+  .live_Match_lists{
+    font-size: 10px;
+  }
+  .live_Match_lists span{
+    font-size: 9px;
+  }
+  .card-title{
+    font-size: 13px;
+  }
+  .card-content {
+    height: 30px;
+    padding-left: 5px;
+    height: 29px;
+  }
+  .card-button{
+    font-size: 10px;
+  }
+
+
+  .card-container .card:first-child{
+    grid-column: auto;
+  }
+  .card-container .card:nth-child(2){
+    grid-column: auto;
+  }
+  .card-container .card:nth-child(3){
+    grid-column: auto;
+  }
+  
+  .card-container .card:nth-child(4){
+    grid-column: auto;
+  }
+  
+  .card-container .card:nth-child(7){
+    grid-column: auto;
+  }
+}

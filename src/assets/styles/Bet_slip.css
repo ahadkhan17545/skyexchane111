@@ -1,0 +1,260 @@
+.bet_slip-wrap {
+  width: 26.0416666667%;
+  background-color: white;
+}
+
+.bet_slip-wrap h3 {
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(180deg, #2d4a5c 0%, #203846 100%);
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: sans-serif;
+  padding-left: 10px;
+  line-height: 25px;
+  position: relative;
+  cursor: pointer;
+}
+
+.bet_slip-wrap h3:before {
+  position: absolute;
+  content: "";
+  top: 2px;
+  background: url(../../../public/expand_btn-lv2.png) no-repeat;
+  background-position: right;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+  height: 20px;
+  width: 20px;
+  z-index: 99;
+  right: 0;
+}
+
+.bet-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-family: sans-serif;
+  background-color: #ced5da;
+  padding: 6px 10px;
+  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+.match-back {
+  margin-right: 50px;
+}
+
+.bet-title-odds {
+  display: flex;
+  gap: 30px;
+}
+
+.bet-match {
+  font-size: 11px;
+  font-family: sans-serif;
+  padding: 4px 10px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.Match-Odds-title {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  font-family: sans-serif;
+  padding: 0px 10px;
+  background-color: #beddf4;
+  margin-top: 2px;
+  gap: 20px;
+  height: 29px;
+  border-bottom: 1px solid #7dbbe9;
+  position: relative;
+}
+
+.Match-Odds-title p{
+  position: absolute;
+  right: 10px;
+}
+
+.Match-Odds-title img {
+  margin-right: -3px;
+}
+
+.Match-Odds-title span {
+  color: gray;
+}
+
+.bet-item {
+  background: white;
+  border-radius: 5px;
+}
+
+.bet-card {
+  border-radius: 5px;
+}
+
+.bet-back {
+  background: #e6f7ff;
+}
+
+.bet-lay {
+  background: #ffe6e6;
+}
+
+.bet-input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.bet-input {
+  width: 50px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.bet-profit {
+  font-size: 14px;
+}
+.bet-buttons {
+  width: 100%;
+  background-color: #d4e8f8;
+  color: #beddf4;
+  padding: 5px 10px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-bottom: 1px solid #7dbbe9;
+}
+
+.bet-buttons button {
+  background-image: linear-gradient(180deg, #ffffff 0%, #eeeeee 89%);
+  box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.5);
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  color: #1e1e1e;
+  line-height: 19px;
+  width: 100%;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.Liability {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  font-size: 13px;
+  font-family: sans-serif;
+  height: 25px;
+  align-items: center;
+  padding: 10px;
+  color: gray;
+}
+
+.Liability span {
+  color: rgb(180, 4, 4);
+  padding-left: 5px;
+}
+
+.confirm-bet input {
+  margin-right: 5px;
+}
+
+.Match-Odds-inner {
+  display: flex;
+  align-items: center;
+}
+.MatchOdds-input {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.MatchOdds-input input {
+  width: 50px;
+  color: #1e1e1e;
+  font-size: 12px;
+  border: 0px #aaa solid;
+  background: #fff;
+  box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  text-align: end;
+  padding: 3px;
+}
+
+.min-bet {
+  width: 100%;
+  background-color: #d4e8f8;
+  height: 25px;
+  display: flex;
+  justify-content: end;
+  font-size: 11px;
+  align-items: center;
+  border-bottom: 1px solid #7dbbe9;
+  padding: 10px;
+  font-family: sans-serif;
+  color: #203846;
+}
+.bet-actions-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  padding-top: 0px;
+  border-bottom: 1px solid #ddd;
+  gap: 30px;
+}
+
+.cancel-btn {
+  border-color: #222;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1.5px solid #dedddd;
+  box-shadow: initial;
+  width: 43%;
+  height: 25px;
+  font-weight: bold;
+}
+
+.place-btn {
+  color: #ffb600 !important;
+  border-color: #222;
+  background-image: linear-gradient(180deg, #474747 0%, #070707 100%);
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #777;
+  box-shadow: initial;
+  width: 50%;
+  height: 25px;
+  font-weight: bold;
+}
+
+.confirm-bet {
+  margin-top: 10px;
+  font-size: 14px;
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+.bet-lay-row .Match-Odds-title {
+  background-color: #f3dce2 !important;
+  border-bottom: 1px solid #dfa3b3;
+}
+.bet-lay-row .bet-buttons{
+  background-color: #faeff2;
+  border-bottom: 1px solid #dfa3b3;
+}
+
+.bet-lay-row  .min-bet{
+  background-color: #faeff2;
+  border-bottom: 1px solid #dfa3b3;
+}
+
+@media only screen and (max-width: 800px) {
+  .bet_slip-wrap{
+    display: none;
+  }
+}
