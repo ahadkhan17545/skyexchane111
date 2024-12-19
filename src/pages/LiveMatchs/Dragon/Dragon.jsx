@@ -1,7 +1,7 @@
 import React from "react";
-import Menu_select from "../../components/Menu_select";
-import Bet_slip from "../../components/Bet_slip";
-import DragonMiddle from "../../components/LiveBets/DragonMiddle";
+import Menu_select from "../../../components/Menu_select";
+import Bet_slip from "../../../components/Bet_slip";
+import DragonMiddle from "../../../components/LiveBets/DragonMiddle";
 
 const Dragon = () => {
   const menuItems = [

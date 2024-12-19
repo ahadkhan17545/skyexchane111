@@ -1,7 +1,7 @@
 import React from "react";
-import Menu_select from "../../components/Menu_select";
-import Bet_slip from "../../components/Bet_slip";
-import LiveMiddle from "../../components/LiveBets/LiveMiddle";
+import Menu_select from "../../../components/Menu_select";
+import Bet_slip from "../../../components/Bet_slip";
+import LiveMiddle from "../../../components/LiveBets/LiveMiddle";
 
 const Livebeat = () => {
   const menuItems = [

@@ -26,14 +26,13 @@ import MobileNav from "./components/Mobilenav/MobileNav";
 import AuthLogin from "./pages/AuthLogin";
 import Profile from "./pages/Profile";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import Livebeat from "./pages/Livebeat/Livebeat";
-import Dragon from "./pages/Dragon/Dragon";
-
+import "react-toastify/dist/ReactToastify.css";
+import Livebeat from "./pages/LiveMatchs/Livebeat/Livebeat";
+import Dragon from "./pages/LiveMatchs/Dragon/Dragon";
+import Poker from "./pages/LiveMatchs/Poker/Poker";
 
 const App = () => {
   return (
-    
     <AppProvider>
       <MainApp />
     </AppProvider>
@@ -42,12 +41,12 @@ const App = () => {
 
 const MainApp = () => {
   const { loginOpen } = useContext(AppContext);
-  
+
   return (
     <div>
       <ToastContainer />
       <Navbar />
-    
+
       <Routes>
         <Route index element={<Home />} />
         <Route path="in-play" element={<InPlay />} />
@@ -63,7 +62,10 @@ const MainApp = () => {
         <Route path="virtual-cricket" element={<VirtualCricket />} />
         <Route path="myAccount/profile" element={<MyAccount />} />
         <Route path="myAccount/summary" element={<Summary />} />
-        <Route path="myAccount/accountCashStatement" element={<AccountCashStatement />} />
+        <Route
+          path="myAccount/accountCashStatement"
+          element={<AccountCashStatement />}
+        />
         <Route path="myAccount/current_bets" element={<Current_bets />} />
         <Route path="myAccount/bets-history" element={<Bets_history />} />
         <Route path="myAccount/profit-loss" element={<Profit_loss />} />
@@ -71,9 +73,10 @@ const MainApp = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/livebeat" element={<Livebeat />} />
         <Route path="/dragon" element={<Dragon />} />
+        <Route path="/poker" element={<Poker />} />
       </Routes>
 
-      <MobileNav/>
+      <MobileNav />
 
       {loginOpen && <Login />}
     </div>

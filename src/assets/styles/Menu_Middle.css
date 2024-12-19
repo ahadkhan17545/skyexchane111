@@ -75,6 +75,125 @@
   margin-bottom: 2px;
   position: relative;
 }
+
+.PokerMarket {
+  padding: 10px;
+}
+
+.PokerMarket-Item {
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+  box-shadow: #32325d40 0 6px 12px -2px, #0000004d 0 3px 7px -3px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.597);
+  position: relative;
+  margin-top: 14px;
+}
+
+.PokerMarket-Item .market-inner .market-inner-item.active .market-item div{
+  background-color: transparent !important;
+  color: white !important;
+}
+
+.Poker-Player {
+  width: 100%;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Poker-Player button {
+  font-size: 16px;
+  font-weight: bolder;
+  height: 60px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  background-image: linear-gradient(-180deg, #14805e 0, #184438 100%);
+}
+
+.PokerMarket-Item .marketScroll-suspended {
+  position: absolute;
+  z-index: 9 !important;
+  border: 2px solid red;
+  border-top-left-radius: 61px;
+  border-bottom-right-radius: 61px;
+}
+
+.PokerMarket-Item .marketScroll-suspended h2 {
+  color: black;
+}
+
+.Poker-title {
+  margin: auto;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 90px;
+  border-bottom-right-radius: 90px;
+  background-color: #fff !important;
+  height: 42px;
+  width: 34%;
+  box-shadow: #0006 0 2px 4px, #0000004d 0 7px 13px -3px, #0003 0 -3px inset;
+  color: #000;
+  font-family: sans-serif;
+  font-size: 19px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.win-info {
+  height: 22px;
+  width: 22px;
+  border-radius: 50px;
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  cursor: pointer;
+}
+
+.win-info svg {
+  font-size: 22px;
+}
+
+.PokerMarket-Item .market-item div {
+  border-top-left-radius: 90px;
+  border-bottom-right-radius: 90px;
+  background-color: #fff !important;
+  border-left-color: #fff !important;
+  width: 220px !important;
+  text-align: center;
+  box-shadow: #0006 0 2px 4px, #0000004d 0 7px 13px -3px, #0003 0 -3px inset;
+  position: relative;
+  z-index: 1;
+}
+
+.PokerMarket-Item .market-item div::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 70%;
+  z-index: -1;
+  background-image: linear-gradient(-180deg, #14805e 0, #184438 100%);
+  transform: skew(-31deg);
+}
+
+.PokerMarket-Item .market-item strong {
+  font-size: 19px;
+  margin-bottom: 2px;
+}
+
+.PokerMarket-Item .market-item p {
+  font-size: 15px;
+}
+
 .marketScroll-suspended {
   position: absolute;
   height: 100%;
