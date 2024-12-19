@@ -161,7 +161,6 @@ const Profit_loss = () => {
                 type="number"
                 style={{
                   padding: "4px",
-                  border: "1px solid #ccc",
                   borderRadius: "3px",
                   width: "45px",
                   boxShadow: "inset 0px 1px 0px rgba(0, 0, 0, .5)",
@@ -185,7 +184,6 @@ const Profit_loss = () => {
                 type="number"
                 style={{
                   padding: "4px",
-                  border: "1px solid #ccc",
                   borderRadius: "3px",
                   width: "45px",
                   boxShadow: "inset 0px 1px 0px rgba(0, 0, 0, .5)",
@@ -249,7 +247,7 @@ const Profit_loss = () => {
                   color: "#ffb600",
                   cursor: "pointer",
                   fontWeight: "700",
-                  boxShadow: " initial",
+              
                 }}
               >
                 Get P & L

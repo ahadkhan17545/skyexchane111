@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import AccountSidebar from "../../components/AccountSidebar";
 import MyBeatNav from "../../components/MyBeatNav";
 
@@ -125,7 +124,6 @@ const Bets_history = () => {
               type="number"
               style={{
                 padding: "4px",
-                border: "1px solid #ccc",
                 borderRadius: "3px",
                 width: "45px",
                 boxShadow: "inset 0px 1px 0px rgba(0, 0, 0, .5)",
@@ -149,7 +147,6 @@ const Bets_history = () => {
               type="number"
               style={{
                 padding: "4px",
-                border: "1px solid #ccc",
                 borderRadius: "3px",
                 width: "45px",
                 boxShadow: "inset 0px 1px 0px rgba(0, 0, 0, .5)",
@@ -213,7 +210,6 @@ const Bets_history = () => {
                 color: "#ffb600",
                 cursor: "pointer",
                 fontWeight: "700",
-                boxShadow: " initial",
               }}
             >
               Get History

@@ -1,9 +1,9 @@
 import React from "react";
 import Menu_select from "../../components/Menu_select";
 import Bet_slip from "../../components/Bet_slip";
-import LiveMiddle from "../../components/LiveBets/LiveMiddle";
+import DragonMiddle from "../../components/LiveBets/DragonMiddle";
 
-const Livebeat = () => {
+const Dragon = () => {
   const menuItems = [
     { title: "Sports", isHeader: true },
     { title: "All Sports", isHeader: false },
@@ -26,27 +26,25 @@ const Livebeat = () => {
   const marketData = [
     {
       title: "WINNER",
-      minMax: "100 - 500000",
+      minMax: "200 - 600000",
       players: [
-        { name: "PLAYER A", odds: 1.98, amount: 2822699 },
-        { name: "PLAYER B", odds: 1.98, amount: 2822699 },
+        { name: "PLAYER C", odds: 2.1, amount: 1234567 },
+        { name: "PLAYER D", odds: 1.85, amount: 9876543 },
+        { name: "PLAYER D", odds: 1.85, amount: 9876543 },
       ],
     },
-    
-    
+  
   ];
 
   return (
     <>
       <div className="Cricket-wrap">
         <Menu_select menuItems={menuItems} />
-          <LiveMiddle marketData={marketData}/>
+        <DragonMiddle marketData={marketData} />
         <Bet_slip />
       </div>
     </>
   );
 };
 
-
-
-export default Livebeat
+export default Dragon;

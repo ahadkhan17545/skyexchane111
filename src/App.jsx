@@ -28,6 +28,7 @@ import Profile from "./pages/Profile";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Livebeat from "./pages/Livebeat/Livebeat";
+import Dragon from "./pages/Dragon/Dragon";
 
 
 const App = () => {
@@ -44,7 +45,7 @@ const MainApp = () => {
   
   return (
     <div>
-       <ToastContainer />
+      <ToastContainer />
       <Navbar />
     
       <Routes>
@@ -69,6 +70,7 @@ const MainApp = () => {
         <Route path="/login" element={<AuthLogin />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/livebeat" element={<Livebeat />} />
+        <Route path="/dragon" element={<Dragon />} />
       </Routes>
 
       <MobileNav/>

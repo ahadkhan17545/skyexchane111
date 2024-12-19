@@ -4,7 +4,7 @@
   overflow-y: scroll;
 }
 
-.Middle-wraper2::-webkit-scrollbar{
+.Middle-wraper2::-webkit-scrollbar {
   display: none;
 }
 .cricket-banner {
@@ -22,7 +22,6 @@
   background-color: #dddcd6;
   margin-top: -25px;
 }
-
 
 .Highlights-Head {
   width: 100%;
@@ -51,27 +50,32 @@
   border-radius: 4px;
 }
 
-.wrap-highlight_list{
+.wrap-highlight_list {
   display: none;
 }
 
-.Middle-wraper .slider-container{
+.Middle-wraper .slider-container {
   display: none;
 }
 
-.live-video{
+.live-video {
   width: 100%;
   height: 450px;
   background-color: rgb(0, 0, 0);
 }
-.marketScroll{
+.marketScroll {
   width: 100%;
-  background: linear-gradient(90deg, rgb(153 199 241) 0%, rgb(138 189 216 / 50%) 49%, rgb(146 198 246) 100%);
-  padding-top: .1rem;
+  background: linear-gradient(
+    90deg,
+    rgb(153 199 241) 0%,
+    rgb(138 189 216 / 50%) 49%,
+    rgb(146 198 246) 100%
+  );
+  padding-top: 0.1rem;
   margin-bottom: 2px;
   position: relative;
 }
-.marketScroll-suspended{
+.marketScroll-suspended {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -82,16 +86,16 @@
   align-items: center;
   font-family: sans-serif;
   background-color: #fff;
-  opacity: .5;
+  opacity: 0.5;
 }
-.marketScroll-suspended h2{
+.marketScroll-suspended h2 {
   font-weight: bolder;
   color: red;
 }
-.minMaxDesktop{
+.minMaxDesktop {
   width: 100%;
   padding: 3px 5px;
-  background-image: linear-gradient(-180deg, #2E4B5E 0%, #243A48 82%);
+  background-image: linear-gradient(-180deg, #2e4b5e 0%, #243a48 82%);
   display: flex;
   justify-content: space-between;
   color: white;
@@ -101,53 +105,107 @@
   border-top-right-radius: 3px;
 }
 
-.market-inner{
+.market-inner {
   height: 100%;
   display: flex;
   gap: 1px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.market-inner-item{
-  width: 50%;
+.market-inner-item {
+  width: 49%;
   display: flex;
   justify-content: center;
   padding: 10px;
 }
 
-.market-item h4{
+.market-item h4 {
   text-align: center;
   font-family: sans-serif;
   font-size: 12px;
   font-weight: bold;
-  padding-bottom: .25rem !important;
+  padding-bottom: 0.25rem !important;
   color: #23282c;
 }
 
-.market-item div{
-    width: 130px !important;
-    border-radius: 5px;
-    padding: 2px 0;
-    box-shadow: 0 2px 7px 1px #67828be6;
-    background-color: #72bbef !important;
-    padding: 5px 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    cursor: pointer;
-    font-family: sans-serif;
+.market-inner2 .market-item strong {
+  font-size: 17px;
 }
 
-.market-item strong{
+.market-inner2 .market-item div {
+  width: 170px !important;
+  padding: 8px 0 !important;
+}
+
+.market-item div {
+  width: 130px !important;
+  border-radius: 5px;
+  padding: 2px 0;
+  box-shadow: 0 2px 7px 1px #67828be6;
+  background-color: #72bbef !important;
+  padding: 5px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  font-family: sans-serif;
+}
+
+.market-item strong {
   font-size: 12.5px;
   margin-bottom: 4px;
 }
 
-.market-item p{
+.market-item p {
   font-size: 10px;
 }
 
-.market-inner-item.active .market-item div{
+.market-inner-item.active .market-item div {
   background-color: #1a8ee1 !important;
+}
+
+.recent-res {
+  width: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 6px;
+  font-family: sans-serif;
+}
+
+.recent-res h2 {
+  font-size: 17px;
+}
+
+.recent-res ul {
+  display: flex;
+  gap: 15px;
+  padding: 0px;
+  margin: 0px;
+}
+.recent-res ul li {
+  list-style: none;
+}
+
+.t-list,
+.d-list {
+  width: 40px;
+  height: 37px;
+  color: #333;
+  padding: 5px;
+  list-style: none;
+  text-align: center;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: bolder !important;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 800px) {
@@ -164,7 +222,7 @@
   .Matched-details {
     display: none;
   }
-  .first-row{
+  .first-row {
     display: none !important;
   }
   .link-event {
@@ -195,6 +253,6 @@
     text-align: center;
     font-family: sans-serif;
     display: flex;
-    justify-content:  center;
+    justify-content: center;
   }
 }

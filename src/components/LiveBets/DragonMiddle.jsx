@@ -1,12 +1,37 @@
 import React, { useState, useEffect } from "react";
 import "../../assets/styles/Menu_Middle.css";
 import VideoFrame from "../VideoFrame/VideoFrame";
+import Popup from "../BetsPopup/Popup";
 
-const LiveMiddle = ({ marketData }) => {
+const DragonMiddle = ({ marketData }) => {
   const [suspended, setSuspended] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
   const [activeToggle, setActiveToggle] = useState(null);
   const [selectedValue, setSelectedValue] = useState("");
+  const [isPopupVisible, setPopupVisible] = useState(false);
+  const [clickedItem, setClickedItem] = useState("");
+
+  const handleItemClick = (item) => {
+    setClickedItem(item);
+    setPopupVisible(true); 
+  };
+
+  const handleClosePopup = () => {
+    setPopupVisible(false);
+    setClickedItem("");
+  };
+
+  const results = [
+    { label: "D", color: "#72bbef" },
+    { label: "D", color: "#f9a9ba" },
+    { label: "T", color: "#72bbef" },
+    { label: "T", color: "#72bbef" },
+    { label: "D", color: "#72bbef" },
+    { label: "D", color: "#ffff33" },
+    { label: "D", color: "#f9a9ba" },
+    { label: "T", color: "#f9a9ba" },
+    { label: "D", color: "#f9a9ba" },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,7 +70,7 @@ const LiveMiddle = ({ marketData }) => {
             <h4>{market.title}</h4>
             <h4>Min/Max: {market.minMax}</h4>
           </div>
-          <div className="market-inner">
+          <div className="market-inner market-inner2">
             {market.players.map((player, playerIndex) => (
               <div
                 className={`market-inner-item ${
@@ -119,8 +144,28 @@ const LiveMiddle = ({ marketData }) => {
           )}
         </div>
       ))}
+
+      <div className="recent-res">
+        <h2>Recent Result</h2>
+        <ul>
+          {results.map((result, index) => (
+            <li
+              key={index}
+              style={{ backgroundColor: result.color }}
+              className={result.label === "D" ? "d-list" : "t-list"}
+              onClick={() => handleItemClick(result.label)}
+            >
+              {result.label}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {isPopupVisible && (
+        <Popup onClose={handleClosePopup} clickedItem={clickedItem} />
+      )}
     </div>
   );
 };
 
-export default LiveMiddle;
+export default DragonMiddle;
