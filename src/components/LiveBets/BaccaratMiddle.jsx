@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../../assets/styles/Menu_Middle.css";
-import "../../pages/LiveMatchs/Baccarat/Baccarat.css";
 import VideoFrame from "../VideoFrame/VideoFrame";
 import Popup from "../BetsPopup/Popup";
 import Chips from "../../../public/chips1.svg";
