@@ -1,7 +1,7 @@
 import React from "react";
 import Menu_select from "../../../components/Menu_select";
 import Bet_slip from "../../../components/Bet_slip";
-// import BaccaratMiddle from "../../../components/LiveBets/BaccaratMiddle";
+import BaccaratMiddle from "../../../components/LiveBets/BaccaratMiddle";
 
 const Baccarat = () => {
   const menuItems = [
