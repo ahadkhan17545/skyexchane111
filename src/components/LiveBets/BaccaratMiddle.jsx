@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../assets/styles/Menu_Middle.css";
-
+import "../../pages/LiveMatchs/Baccarat/Baccarat.css";
 import VideoFrame from "../VideoFrame/VideoFrame";
 import Popup from "../BetsPopup/Popup";
 import Chips from "../../../public/chips1.svg";
@@ -140,6 +140,7 @@ const BaccaratMiddle = () => {
               <Pie data={data} options={options} />
             </div>
           </div>
+
 
           <div className="Statistics-box chips-outer">
             <h3>CHIPS</h3>
