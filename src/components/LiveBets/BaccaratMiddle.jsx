@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import "../../assets/styles/Menu_Middle.css";
+import "../../pages/LiveMatchs/Baccarat/Baccarat.css";
 import VideoFrame from "../VideoFrame/VideoFrame";
 import Popup from "../BetsPopup/Popup";
 import Chips from "../../../public/chips1.svg";
@@ -8,9 +9,8 @@ import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
-ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
-
-const BaccaratMiddle = ({ marketData }) => {
+const BaccaratMiddle = () => {
+  ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [clickedItem, setClickedItem] = useState("");
 
@@ -59,7 +59,6 @@ const BaccaratMiddle = ({ marketData }) => {
 
   console.log(selectedValue);
 
-
   const data = {
     labels: ["Player", "Banker", "Tie"],
     datasets: [
@@ -91,7 +90,6 @@ const BaccaratMiddle = ({ marketData }) => {
       },
     },
   };
-  
 
   return (
     <div className="Middle-wraper Middle-wraper2">
@@ -141,7 +139,6 @@ const BaccaratMiddle = ({ marketData }) => {
               <Pie data={data} options={options} />
             </div>
           </div>
-            
 
           <div className="Statistics-box chips-outer">
             <h3>CHIPS</h3>
