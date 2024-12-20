@@ -4,7 +4,7 @@ import "../../pages/LiveMatchs/Baccarat/Baccarat.css";
 import VideoFrame from "../VideoFrame/VideoFrame";
 import Popup from "../BetsPopup/Popup";
 import Chips from "../../../public/chips1.svg";
-import Chips1k from "../../../public/Chips1k.svg";
+import Chips1k from "../../../public/chips1k.svg";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
