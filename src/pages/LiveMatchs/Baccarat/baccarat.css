@@ -1,0 +1,160 @@
+.baccarat-main {
+  margin-top: 30px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.baccarat {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.baccarat-inner-round {
+  height: 120px;
+  width: 120px;
+  background: linear-gradient(-180deg, #11b24b 0, #1c6235 100%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  color: white;
+  font-size: 11px;
+}
+
+.baccarat-inner {
+  width: 50%;
+  height: 120px;
+  background: linear-gradient(-180deg, #1285e2 0, #0b5795 100%);
+  padding: 20px;
+  font-family: sans-serif;
+  color: white;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.baccarat .baccarat-inner:last-child {
+  background: linear-gradient(-180deg, #af2736 0, #93212d 100%);
+  justify-content: end;
+}
+
+.baccarat2 {
+  height: 88px;
+  gap: 4px;
+}
+
+.baccarat2 .baccarat-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 88px;
+  font-family: sans-serif;
+  font-size: 11px;
+}
+.baccarat2 .baccarat-inner h2 {
+  text-align: center;
+}
+
+.baccarat2 .baccarat-inner:last-child {
+  justify-content: center;
+}
+
+.baccarat-chips {
+  width: 100%;
+  display: flex;
+  gap: 2px;
+}
+
+.Statistics-box {
+  width: 43.5%;
+  height: 100%;
+  font-family: sans-serif;
+  font-size: 13px;
+}
+
+.chips-outer {
+  width: 50%;
+}
+
+.chips-main {
+  display: flex;
+  gap: 2px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.chips-box {
+  position: relative;
+  margin-bottom: 15px;
+  transition: 0.2s;
+}
+
+.chips-box:hover {
+  margin-top: -5px;
+}
+
+.chips-box:hover p {
+  margin-top: -2px;
+}
+
+.chips-box.active,
+.chips-box.active p {
+  margin-top: -25px;
+}
+
+.chips-box.active{
+    position: relative;
+}
+
+.chips-box.active::before{
+    position: absolute;
+    content: "";
+    width: 53px;
+    height: 48px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);   
+    border-radius: 100%;
+    border: 4px solid #fd8f3b;
+}
+
+.chips-box.active p {
+  margin-top: -10px;
+}
+
+.chips-box p {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.chips-box img {
+  width: 67px;
+  height: 66px;
+  cursor: pointer;
+  background-size: 100% 100%;
+}
+
+.chips-box img {
+  filter: drop-shadow(0 0 0.25rem #fd8f3b);
+}

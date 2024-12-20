@@ -30,6 +30,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Livebeat from "./pages/LiveMatchs/Livebeat/Livebeat";
 import Dragon from "./pages/LiveMatchs/Dragon/Dragon";
 import Poker from "./pages/LiveMatchs/Poker/Poker";
+import Baccarat from "./pages/LiveMatchs/Baccarat/Baccarat";
 
 const App = () => {
   return (
@@ -74,6 +75,7 @@ const MainApp = () => {
         <Route path="/livebeat" element={<Livebeat />} />
         <Route path="/dragon" element={<Dragon />} />
         <Route path="/poker" element={<Poker />} />
+        <Route path="/baccarat" element={<Baccarat />} />
       </Routes>
 
       <MobileNav />

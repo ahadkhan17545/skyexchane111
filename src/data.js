@@ -167,7 +167,7 @@ export const cards = [
     image: img4,
     buttonText: "Play Now",
     videoLink,
-    livebeat: livebeatURL,
+    livebeat: "baccarat",
   },
   {
     id: 14,
