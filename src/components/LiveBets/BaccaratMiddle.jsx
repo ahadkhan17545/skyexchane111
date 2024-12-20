@@ -5,6 +5,11 @@ import VideoFrame from "../VideoFrame/VideoFrame";
 import Popup from "../BetsPopup/Popup";
 import Chips from "../../../public/chips1.svg";
 import Chips1k from "../../../public/Chips1k.svg";
+import { Pie } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+
+ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 const BaccaratMiddle = ({ marketData }) => {
   const [isPopupVisible, setPopupVisible] = useState(false);
@@ -54,6 +59,39 @@ const BaccaratMiddle = ({ marketData }) => {
   };
 
   console.log(selectedValue);
+
+
+  const data = {
+    labels: ["Player", "Banker", "Tie"],
+    datasets: [
+      {
+        label: "Statistics",
+        data: [38, 52, 10],
+        backgroundColor: ["#007bff", "#dc3545", "#28a745"],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    plugins: {
+      legend: {
+        position: "right",
+        labels: {
+          boxWidth: 20,
+          padding: 10,
+        },
+      },
+      datalabels: {
+        color: "#fff",
+        font: {
+          size: 14,
+          weight: "bold",
+        },
+        formatter: (value) => `${value}%`,
+      },
+    },
+  };
   
 
   return (
@@ -100,9 +138,12 @@ const BaccaratMiddle = ({ marketData }) => {
         <div className="baccarat-chips">
           <div className="Statistics-box">
             <h3>STATISTICS</h3>
+            <div className="Statistics-chart">
+              <Pie data={data} options={options} />
+            </div>
           </div>
+            
 
-          
           <div className="Statistics-box chips-outer">
             <h3>CHIPS</h3>
             <div className="chips-main">

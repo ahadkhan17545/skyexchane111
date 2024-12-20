@@ -1,7 +1,6 @@
 .baccarat-main {
   margin-top: 30px;
   width: 100%;
-  margin-bottom: 20px;
 }
 
 .baccarat {
@@ -76,6 +75,8 @@
 .baccarat-chips {
   width: 100%;
   display: flex;
+  height: auto;
+  height: 290px;
   gap: 2px;
 }
 
@@ -104,6 +105,11 @@
   margin-bottom: 15px;
   transition: 0.2s;
 }
+
+.Statistics-chart {
+    width: 300px;
+    text-align: center;
+  }
 
 .chips-box:hover {
   margin-top: -5px;
