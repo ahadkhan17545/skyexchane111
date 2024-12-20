@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../../assets/styles/Menu_Middle.css";
 import "../../pages/LiveMatchs/Baccarat/Baccarat.css";
 import VideoFrame from "../VideoFrame/VideoFrame";
