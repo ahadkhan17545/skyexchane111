@@ -31,6 +31,7 @@ import Livebeat from "./pages/LiveMatchs/Livebeat/Livebeat";
 import Dragon from "./pages/LiveMatchs/Dragon/Dragon";
 import Poker from "./pages/LiveMatchs/Poker/Poker";
 import Baccarat from "./pages/LiveMatchs/Baccarat/Baccarat";
+import Instantworli from "./pages/LiveMatchs/Instantworli/Instantworli";
 
 const App = () => {
   return (
@@ -76,6 +77,7 @@ const MainApp = () => {
         <Route path="/dragon" element={<Dragon />} />
         <Route path="/poker" element={<Poker />} />
         <Route path="/baccarat" element={<Baccarat />} />
+        <Route path="/instant-Worli" element={<Instantworli />} />
       </Routes>
 
       <MobileNav />

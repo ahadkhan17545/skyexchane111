@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Agu+Display&display=swap');
 .Middle-wraper {
   width: 55%;
   height: 100%;
@@ -236,6 +237,76 @@
   display: flex;
   justify-content: center;
   padding: 10px;
+}
+
+.market-inner3{
+  display: grid;
+  grid-template-columns: repeat(5, 2fr);
+}
+
+.market-inner.market-inner3.LINE{
+  grid-template-columns: repeat(2, 2fr);
+  padding: 3px 15px;
+  padding-bottom: 0px;
+}
+
+.market-inner.market-inner3[class*="EVEN"] {
+  grid-template-columns: repeat(2, 1fr);
+  padding: 3px 15px;
+  padding-bottom: 0px;
+}
+
+.MarketMinMax{
+  background-color: #bed5d8;
+  text-align: end;
+  margin: 2px;
+  border-radius: 3px;
+  font-family: sans-serif;
+  font-size: 10px;
+  padding: 7px 6px;
+  line-height: 7px;
+  margin-bottom: 15px;
+}
+
+.marketScroll3{
+  background: linear-gradient(90deg, rgb(255 255 255) 0%, rgb(255 255 255 / 50%) 49%, rgb(255 255 255) 100%);
+}
+
+.market-inner-item2{
+  width: auto;
+  padding: 1px;
+
+}
+
+.market-inner-item2 .market-item{
+  width: 100%;
+  background-color: rgb(157, 139, 139);
+}
+
+.market-inner-item2 .market-item div{
+  width: 100% !important;
+}
+
+
+
+.market-inner-item2 .market-item div{
+  box-shadow: none;
+  border-radius: 0px;
+  height: 70px;
+
+}
+
+.market-inner-item2 .market-item strong{
+  margin-bottom: 0px;
+  font-family: "Agu Display", serif;
+  font-size: 26px;
+  color: #323232;
+  text-shadow: -1px 0.5px 0px black;
+}
+
+.player-count{
+  font-size: 13px !important;
+  margin-top: 5px;
 }
 
 .market-item h4 {

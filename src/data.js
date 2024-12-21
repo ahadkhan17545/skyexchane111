@@ -39,7 +39,7 @@ export const cards = [
     image: img3,
     buttonText: "Play Now",
     videoLink,
-    livebeat: livebeatURL,
+    livebeat: "instant-Worli",
   },
   {
     id: 4,
@@ -92,14 +92,6 @@ export const cards = [
   {
     id: 21,
     title: "20-20 DTL",
-    image: img3,
-    buttonText: "Play Now",
-    videoLink,
-    livebeat: livebeatURL,
-  },
-  {
-    id: 3,
-    title: "Instant Worli",
     image: img3,
     buttonText: "Play Now",
     videoLink,
