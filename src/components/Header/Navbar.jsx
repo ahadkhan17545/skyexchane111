@@ -12,6 +12,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { RiArrowDownSFill, RiLogoutBoxRLine } from "react-icons/ri";
 import dolat_img from "../../../public/dolar.svg";
 import { IoMdSettings } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { setLoginOpen } = useContext(AppContext);
@@ -32,7 +33,7 @@ const Navbar = () => {
   const handleLogin = () => {
     if (username && password) {
       localStorage.setItem("userId", "12345");
-      alert("Login successful!");
+      toast.success("Login successful!");
       setUsername("");
       setPassword("");
     } else {
@@ -42,6 +43,15 @@ const Navbar = () => {
 
   const LoginModle = () => {
     setLoginOpen(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear(); 
+    toast.success("Logout successful!");
+    
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 500);
   };
 
   return (
@@ -109,7 +119,7 @@ const Navbar = () => {
                       <li>
                         <Link to="/myAccount/profit-loss">Profit & Loss</Link>
                       </li>
-                      <button>
+                      <button onClick={handleLogout}>
                         LOGOUT <RiLogoutBoxRLine />
                       </button>
                     </ul>
