@@ -5,10 +5,9 @@ import banner from "../assets/images/kv_cricket.jpg";
 import SportsCard from "./SportsCard";
 import Banner from "./Banner/Banner";
 import MobileMenu from "./Mobilenav/MobileMenu";
+import Loading from "./Loading";
 
-const Menu_Middle = ({sportsData}) => {
-
-
+const Menu_Middle = ({ cricketMatches, MatchName, loader }) => {
   return (
     <>
       <div className="Middle-wraper">
@@ -16,8 +15,8 @@ const Menu_Middle = ({sportsData}) => {
           <img src={banner} alt="" />
         </div>
 
-        <Banner/>
-        <MobileMenu/>
+        <Banner />
+        <MobileMenu />
 
         <div className="Highlights-Head">
           <h4>Sports Highlights</h4>
@@ -39,11 +38,16 @@ const Menu_Middle = ({sportsData}) => {
           </div>
         </div>
 
-         <SportsCard sportsData={sportsData} />
+        
+        {loader ? (
+          <Loading />
+        ) : (
+          <SportsCard cricketMatches={cricketMatches} MatchName={MatchName} />
+        )}
 
-       <div className="footer-section">
-        <Footer />
-       </div>
+        <div className="footer-section">
+          <Footer />
+        </div>
       </div>
     </>
   );

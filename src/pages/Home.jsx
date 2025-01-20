@@ -1,20 +1,22 @@
-import React from 'react'
-import Banner from '../components/Banner/Banner'
-import '../assets/styles/Home.css'
+import React, { useEffect } from "react";
+import Banner from "../components/Banner/Banner";
+import "../assets/styles/Home.css";
 import MatchCard from "../components/MatchCard/MatchCard";
-import Footer from '../components/Footer/Footer';
+import Footer from "../components/Footer/Footer";
+
 
 const Home = () => {
+
+
   return (
     <>
-     
       <div className="main-wrap">
-         <Banner/>
-           <MatchCard/>
-         <Footer/>
+        <Banner />
+         <MatchCard />
+        <Footer />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

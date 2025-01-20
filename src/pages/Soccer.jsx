@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../assets/styles/Cricket.css";
 import Menu_select from "../components/Menu_select";
 import Menu_Middle from "../components/Menu_Middle";
 import Bet_slip from "../components/Bet_slip";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMatchesByEventId } from "../redux/slices/matchSlice";
 
 const Soccer = () => {
   const menuItems = [
@@ -23,65 +25,44 @@ const Soccer = () => {
     { title: "Womens One Day Internationals", isHeader: false },
     { title: "Others", isHeader: false },
   ];
+    const [loading, setLoading] = useState(false);
 
-  const sportsData = [
-    {
-      name: "Cricket",
-      events: [
-        {
-          title: "India v England",
-          matched: "PTE68,239",
-          odds: [
-            { back: "1.2", lay: "1.5" },
-            { back: "2.0", lay: "2.5" },
-            { back: "2.5", lay: "3.0" },
-          ],
-        },
-        {
-          title: "Australia v Pakistan",
-          matched: "PTE68,240",
-          odds: [
-            { back: "1.1", lay: "1.3" },
-            { back: "2.1", lay: "2.6" },
-            { back: "3.0", lay: "3.5" },
-          ],
-        },
-        {
-          title: "New Zealand v South Africa",
-          matched: "PTE68,241",
-          odds: [
-            { back: "1.3", lay: "1.6" },
-            { back: "2.3", lay: "2.8" },
-            { back: "3.5", lay: "4.0" },
-          ],
-        },
-        {
-          title: "Sri Lanka v West Indies",
-          matched: "PTE68,242",
-          odds: [
-            { back: "1.4", lay: "1.7" },
-            { back: "2.2", lay: "2.9" },
-            { back: "4.0", lay: "4.5" },
-          ],
-        },
-        {
-          title: "Bangladesh v Afghanistan",
-          matched: "PTE68,243",
-          odds: [
-            { back: "1.0", lay: "1.2" },
-            { back: "1.8", lay: "2.4" },
-            { back: "3.2", lay: "3.7" },
-          ],
-        },
-      ],
-    },
-  ];
+  const dispatch = useDispatch();
+
+  const { matches: soccerMatches } = useSelector(
+    (state) => state.matches.soccer
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const soccer = dispatch(
+          fetchMatchesByEventId({ eventId: 1, sport: "soccer" })
+        );
+
+        await Promise.allSettled([soccer]);
+      } catch (error) {
+        console.error("Error fetching matches:", error);
+      }
+      finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+    const interval = setInterval(fetchData, 30000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [dispatch]);
 
   return (
     <>
       <div className="Cricket-wrap">
         <Menu_select menuItems={menuItems} />
-        <Menu_Middle sportsData={sportsData}/>
+        <Menu_Middle cricketMatches={soccerMatches} MatchName={"Soccer"} loader={loading}/>
         <Bet_slip />
       </div>
     </>

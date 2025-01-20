@@ -4,9 +4,9 @@ import { BsPinFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { AppContext } from "../Context/AppContext";
+import LinkEventBox from "./LinkEventBox";
 
-const SportsCard = ({ sportsData }) => {
-
+const SportsCard = ({ cricketMatches, MatchName }) => {
   const { setSelectedData, selectedData } = useContext(AppContext);
 
   const handleDataClick = (teamName, odds, type) => {
@@ -36,7 +36,6 @@ const SportsCard = ({ sportsData }) => {
       console.log("Duplicate data, not saving.");
     }
   };
-  
 
   const toggleDropdown = (id) => {
     document.getElementById(`sub-${id}`).classList.toggle("onsub");
@@ -44,74 +43,60 @@ const SportsCard = ({ sportsData }) => {
 
   return (
     <>
-      {sportsData.map((sport, index) => (
-        <ul className="dropdownul" key={index}>
-          <li className="first-row"></li>
-          <div className="subdropdown" id={`sub-${index}`}>
-            <div className="slip-head">
-              <div className="slip-head-one">
-                <p>Matched</p>
-              </div>
-
-              <div className="slip-head-two">
-                <div className="slip-head-two-item">1</div>
-                <div className="slip-head-two-item">x</div>
-                <div className="slip-head-two-item">2</div>
-                <div className="item-book"></div>
-              </div>
+      <ul className="dropdownul">
+        <li onClick={() => toggleDropdown("cricket")}>{MatchName}</li>
+        <div className="subdropdown" id="sub-cricket">
+          <div className="slip-head">
+            <div className="slip-head-one">
+              <p>Matched</p>
             </div>
 
-            {sport.events.map((event, i) => (
-              <div className="innerlink2" key={i}>
-                <div className="linkbox">
-                  <div className="innerlink">
-                    <Link to={`/fullMarket?id=${i + 1}`}>
-                      <img className="icon-in_play" src={dots} alt="dots" />{" "}
-                      {event.title}
-                    </Link>
-                    <p>
-                      <span>In-Play</span> <div className="play-btn"></div>
-                    </p>
-                  </div>
-
-                  <div className="Matched-details">
-                    <p>{event.matched}</p>
-                  </div>
-                </div>
-
-                <div className="link-event-box">
-                  {event.odds.map((odd, j) => (
-                    <div className="link-event" key={j}>
-                      <button
-                        className="btn-back"
-                        onClick={() =>
-                          handleDataClick(event.title, odd.back, "Back")
-                        }
-                      >
-                        <b>{odd.back}</b>
-                      </button>
-
-                      <button
-                        className="btn-lay"
-                        onClick={() =>
-                          handleDataClick(event.title, odd.lay, "Lay")
-                        }
-                      >
-                        <b>{odd.lay}</b>
-                      </button>
-                    </div>
-                  ))}
-                  <div className="book-mark">
-                    <div className="book-mark-icon">
-                      <BsPinFill />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <div className="slip-head-two">
+              <div className="slip-head-two-item">1</div>
+              <div className="slip-head-two-item">x</div>
+              <div className="slip-head-two-item">2</div>
+              <div className="item-book"></div>
+            </div>
           </div>
-        </ul>
-      ))}
+
+          {cricketMatches?.data
+            ?.filter((e) => e?.matchOdds?.some((odds) => odds.inplay))
+            .map((e, i) => {
+              const filteredOdds = e?.matchOdds?.find(
+                (odds) => odds.marketId === e.marketId
+              );
+              return (
+                <div className="innerlink2" key={i}>
+                  <div className="linkbox">
+                    <div className="innerlink">
+                      <Link to={`/fullMarket?id=1`}>
+                        <img className="icon-in_play" src={dots} alt="dots" />{" "}
+                        {e.eventName}
+                      </Link>
+
+                      {e?.matchOdds?.some((odds) => odds?.inplay) && (
+                        <p>
+                          <span>In-Play</span> <div className="play-btn"></div>
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="Matched-details">
+                      <p>PTE---</p>
+                    </div>
+                  </div>
+
+                  <LinkEventBox
+                    eventName={e.eventName}
+                    filteredOdds={filteredOdds}
+                    handleDataClick={handleDataClick}
+                    eventId={i}
+                  />
+                </div>
+              );
+            })}
+        </div>
+      </ul>
     </>
   );
 };
