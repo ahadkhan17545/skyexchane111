@@ -1,13 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 
 const BetComponent = ({ openMenu, index, setOpenMenu, selectedIndex, selectedValue, selectedType }) => {
 
+  const [currentValue, setCurrentValue] = useState(0);
+  
   const handleCancelClick = () => {
-    setOpenMenu(null); // Close the menu
+    setOpenMenu(null); 
   };
 
-  console.log("values", selectedType);
+  const handleQuickButtonClick = (value) => {
+    setCurrentValue(value); 
+    const newValue = selectedIndex * currentValue;
+    console.log("new value", newValue);
+  };
+
+  const handleNumPadClick = (num) => {
+    setCurrentValue((prevValue) => prevValue + num);
   
+  };
+
+  const handleDeleteClick = () => {
+    setCurrentValue((prevValue) => {
+      return prevValue.toString().slice(0, -1);
+    });
+  };
+
+
+  const handleIncreaseClick = () => {
+    setCurrentValue((prevValue) => parseFloat(prevValue) + 1);
+  };
+
+  const handleDecreaseClick = () => {
+    setCurrentValue((prevValue) => (parseFloat(prevValue) > 0 ? parseFloat(prevValue) - 1 : 0)); // Decrease value by 1, ensuring it doesn't go below 0
+  };
+
 
   return (
     <>
@@ -34,11 +60,23 @@ const BetComponent = ({ openMenu, index, setOpenMenu, selectedIndex, selectedVal
                 Min Bet: <strong id="dynamicMinBet"></strong>
               </p>
               <div id="inputStake" className="input-num input-stake">
-                <a id="stakeDown" className="icon-minus"></a>
+                <a
+                  id="stakeDown"
+                  className="icon-minus"
+                  onClick={handleDecreaseClick}
+                >
+           
+                </a>
                 <span id="stake" className="typed typeing">
-                  72
+                  {currentValue}
                 </span>
-                <a id="stakeUp" className="icon-plus"></a>
+                <a
+                  id="stakeUp"
+                  className="icon-plus"
+                  onClick={handleIncreaseClick}
+                >
+              
+                </a>
               </div>
             </li>
           </ul>
@@ -85,11 +123,11 @@ const BetComponent = ({ openMenu, index, setOpenMenu, selectedIndex, selectedVal
                 ".",
               ].map((num, index) => (
                 <li key={index}>
-                  <button>{num}</button>
+                  <button onClick={() => handleNumPadClick(num)}>{num}</button>
                 </li>
               ))}
             </div>
-            <button id="delete" className="btn-delete"></button>
+            <button id="delete" className="btn-delete" onClick={handleDeleteClick}></button>
           </div>
 
           <div className="mobile-cls-bet">

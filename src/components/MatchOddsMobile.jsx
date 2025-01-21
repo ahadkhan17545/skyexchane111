@@ -157,7 +157,7 @@ const MatchOddsMobile = ({ data, runningData }) => {
   };
 
   return (
-    <div className="mobile-odds" style={styles.container}>
+    <div className="mobile-odds" style={styles.container} >
       {/* Header Section */}
       <div style={styles.header}>
         {/* Matched Section */}

@@ -103,9 +103,9 @@ const InPlayCard = () => {
     dispatch(setRunningData(runningData));
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
 
   return (
     <>
