@@ -5,10 +5,7 @@ import { AppContext } from "../Context/AppContext";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMatchesByEventId } from "../redux/slices/matchSlice";
-import {
-  fetchMarketOdds,
-  setRunningData,
-} from "../redux/slices/fullmarketSlice";
+import { setRunningData } from "../redux/slices/fullmarketSlice";
 import LinkEventBox from "./LinkEventBox";
 import Loading from "./Loading";
 

@@ -4,10 +4,14 @@ import { BsPinFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { AppContext } from "../Context/AppContext";
+import { useDispatch, useSelector } from "react-redux";
 import LinkEventBox from "./LinkEventBox";
+import { setRunningData } from "../redux/slices/fullmarketSlice";
 
 const SportsCard = ({ cricketMatches, MatchName }) => {
   const { setSelectedData, selectedData } = useContext(AppContext);
+
+  const dispatch = useDispatch();
 
   const handleDataClick = (teamName, odds, type) => {
     const newData = {
@@ -41,6 +45,10 @@ const SportsCard = ({ cricketMatches, MatchName }) => {
     document.getElementById(`sub-${id}`).classList.toggle("onsub");
   };
 
+  const handleMarket = (runningData) => {
+    dispatch(setRunningData(runningData));
+  };
+
   return (
     <>
       <ul className="dropdownul">
@@ -69,7 +77,10 @@ const SportsCard = ({ cricketMatches, MatchName }) => {
                 <div className="innerlink2" key={i}>
                   <div className="linkbox">
                     <div className="innerlink">
-                      <Link to={`/fullMarket?id=1`}>
+                      <Link
+                        to={`/fullMarket?eventType=4&eventId=${e.eventId}&marketId=${e.marketId}&competitionId=${e.competitionId}`}
+                        onClick={() => handleMarket(e.matchRunners)}
+                      >
                         <img className="icon-in_play" src={dots} alt="dots" />{" "}
                         {e.eventName}
                       </Link>

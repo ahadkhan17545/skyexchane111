@@ -42,12 +42,17 @@ const FullMarketEvent = () => {
     (state) => state.marketOdds
   );
 
+  console.log("data", data);
+  
+
   const [searchParams] = useSearchParams();
 
   const eventType = searchParams.get("eventType");
   const eventId = searchParams.get("eventId");
   const marketId = searchParams.get("marketId");
   const competitionId = searchParams.get("competitionId");
+
+  const [activeCells, setActiveCells] = useState({});
   const [previousData, setPreviousData] = useState(null);
 
   useEffect(() => {
@@ -58,7 +63,25 @@ const FullMarketEvent = () => {
             fetchMarketOdds({ eventType, competitionId, eventId, marketId })
           );
 
+          // Compare new data with previous data
           if (JSON.stringify(previousData) !== JSON.stringify(marketOdds)) {
+            const updatedActiveCells = {};
+
+            // Detect changes and mark active cells
+            marketOdds.forEach((runner, index) => {
+              const prevRunner = previousData?.[index];
+              if (!prevRunner || JSON.stringify(runner) !== JSON.stringify(prevRunner)) {
+                updatedActiveCells[index] = true;
+              }
+            });
+
+            setActiveCells(updatedActiveCells);
+
+            // Remove active classes after 1 second
+            setTimeout(() => {
+              setActiveCells({});
+            }, 1000);
+
             setPreviousData(marketOdds);
           }
         } catch (error) {
@@ -68,13 +91,11 @@ const FullMarketEvent = () => {
     };
 
     fetchData();
+    const interval = setInterval(fetchData, 2000);
 
-    if (previousData) {
-      const interval = setInterval(fetchData, 2000);
-
-      return () => clearInterval(interval);
-    }
+    return () => clearInterval(interval);
   }, [dispatch, eventType, eventId, marketId, competitionId, previousData]);
+
 
   const { setSelectedData, selectedData } = useContext(AppContext);
   const [activeTab, setActiveTab] = useState("Fancy");
@@ -175,7 +196,7 @@ const FullMarketEvent = () => {
           </div>
           <div className="max-num">Max 400</div>
           <div className="Matched-num">
-            Matched <b>PTE 3,915,877</b>
+            Matched <b>PTE {data?.data?.[0].totalMatched}</b>
           </div>
         </div>
       </div>
@@ -229,6 +250,7 @@ const FullMarketEvent = () => {
                         eventId
                       )
                     }
+                      className={activeCells[`${index}-back`] ? "active" : ""}
                   >
                     {runner?.ex?.availableToBack[2]?.price}
                     <br />{" "}
@@ -246,6 +268,7 @@ const FullMarketEvent = () => {
                         eventId
                       )
                     }
+                    
                   >
                     {runner?.ex?.availableToBack[1]?.price}
                     <br />{" "}

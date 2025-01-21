@@ -141,7 +141,6 @@ const MatchOddsMobile = ({ data, runningData }) => {
     console.log(`Team: ${team}, Odds: ${odds}, Type: ${type}`);
   };
 
-
   return (
     <div className="mobile-odds" style={styles.container}>
       {/* Header Section */}
@@ -163,7 +162,9 @@ const MatchOddsMobile = ({ data, runningData }) => {
             />
             <div style={styles.matchedItem}>
               <span style={styles.Matched1}>Matched</span>
-              <span style={styles.Matched1Item}>PTE 5,332,843</span>
+              <span style={styles.Matched1Item}>
+                PTE {data?.data?.[0].totalMatched}
+              </span>
             </div>
           </div>
         </div>
@@ -182,14 +183,18 @@ const MatchOddsMobile = ({ data, runningData }) => {
         return (
           <div style={styles.matchOddsSection} key={index}>
             <div style={styles.teamRow}>
-              <div style={styles.teamName}>{runnerData ? runnerData.runnerName : ""}</div>
+              <div style={styles.teamName}>
+                {runnerData ? runnerData.runnerName : ""}
+              </div>
 
               <div style={styles.oddsContainerMain}>
                 <div style={styles.oddsContainer}>
                   <div style={{ ...styles.oddsBox, ...styles.backOdds }}>
                     {runner?.ex?.availableToBack[0]?.price}
                     <br />
-                    <span style={styles.oddsVolume}>{runner?.ex?.availableToBack[0]?.size}</span>
+                    <span style={styles.oddsVolume}>
+                      {runner?.ex?.availableToBack[0]?.size}
+                    </span>
                   </div>
                 </div>
 
@@ -197,7 +202,9 @@ const MatchOddsMobile = ({ data, runningData }) => {
                   <div style={{ ...styles.oddsBox, ...styles.layOdds }}>
                     {runner?.ex?.availableToLay[2]?.price}
                     <br />
-                    <span style={styles.oddsVolume}>{runner?.ex?.availableToLay[2]?.size}</span>
+                    <span style={styles.oddsVolume}>
+                      {runner?.ex?.availableToLay[2]?.size}
+                    </span>
                   </div>
                 </div>
               </div>
