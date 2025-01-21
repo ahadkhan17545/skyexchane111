@@ -42,23 +42,25 @@ const FullMarketEvent = () => {
     (state) => state.marketOdds
   );
 
-
   const [searchParams] = useSearchParams();
 
   const eventType = searchParams.get("eventType");
   const eventId = searchParams.get("eventId");
   const marketId = searchParams.get("marketId");
   const competitionId = searchParams.get("competitionId");
+  const [previousData, setPreviousData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       if (eventType && eventId && marketId && competitionId) {
         try {
-          const marketOdds = dispatch(
+          const marketOdds = await dispatch(
             fetchMarketOdds({ eventType, competitionId, eventId, marketId })
           );
 
-          await Promise.allSettled([marketOdds]);
+          if (JSON.stringify(previousData) !== JSON.stringify(marketOdds)) {
+            setPreviousData(marketOdds);
+          }
         } catch (error) {
           console.error("Error fetching market odds:", error);
         }
@@ -66,10 +68,13 @@ const FullMarketEvent = () => {
     };
 
     fetchData();
-    const interval = setInterval(fetchData, 3000);
 
-    return () => clearInterval(interval);
-  }, [dispatch, eventType, eventId, marketId, competitionId]);
+    if (previousData) {
+      const interval = setInterval(fetchData, 2000);
+
+      return () => clearInterval(interval);
+    }
+  }, [dispatch, eventType, eventId, marketId, competitionId, previousData]);
 
   const { setSelectedData, selectedData } = useContext(AppContext);
   const [activeTab, setActiveTab] = useState("Fancy");
@@ -326,7 +331,7 @@ const FullMarketEvent = () => {
       </div>
 
       {/* Live Match mobile Tracking Section */}
-        <MatchOddsMobile data={data} runningData={runningData}/>
+      <MatchOddsMobile data={data} runningData={runningData} />
       {/* Live Match mobile Tracking Section */}
 
       {/* Bookmaker Market Section */}
