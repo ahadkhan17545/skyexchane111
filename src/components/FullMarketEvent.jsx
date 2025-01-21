@@ -42,17 +42,12 @@ const FullMarketEvent = () => {
     (state) => state.marketOdds
   );
 
-  console.log("data", data);
-  
-
   const [searchParams] = useSearchParams();
 
   const eventType = searchParams.get("eventType");
   const eventId = searchParams.get("eventId");
   const marketId = searchParams.get("marketId");
   const competitionId = searchParams.get("competitionId");
-
-  const [activeCells, setActiveCells] = useState({});
   const [previousData, setPreviousData] = useState(null);
 
   useEffect(() => {
@@ -63,25 +58,7 @@ const FullMarketEvent = () => {
             fetchMarketOdds({ eventType, competitionId, eventId, marketId })
           );
 
-          // Compare new data with previous data
           if (JSON.stringify(previousData) !== JSON.stringify(marketOdds)) {
-            const updatedActiveCells = {};
-
-            // Detect changes and mark active cells
-            marketOdds.forEach((runner, index) => {
-              const prevRunner = previousData?.[index];
-              if (!prevRunner || JSON.stringify(runner) !== JSON.stringify(prevRunner)) {
-                updatedActiveCells[index] = true;
-              }
-            });
-
-            setActiveCells(updatedActiveCells);
-
-            // Remove active classes after 1 second
-            setTimeout(() => {
-              setActiveCells({});
-            }, 1000);
-
             setPreviousData(marketOdds);
           }
         } catch (error) {
@@ -91,11 +68,13 @@ const FullMarketEvent = () => {
     };
 
     fetchData();
-    const interval = setInterval(fetchData, 2000);
 
-    return () => clearInterval(interval);
-  }, [dispatch, eventType, eventId, marketId, competitionId, previousData]);
+    if (previousData) {
+      const interval = setInterval(fetchData, 2000);
 
+      return () => clearInterval(interval);
+    }
+  }, [dispatch]);
 
   const { setSelectedData, selectedData } = useContext(AppContext);
   const [activeTab, setActiveTab] = useState("Fancy");
@@ -250,7 +229,6 @@ const FullMarketEvent = () => {
                         eventId
                       )
                     }
-                      className={activeCells[`${index}-back`] ? "active" : ""}
                   >
                     {runner?.ex?.availableToBack[2]?.price}
                     <br />{" "}
@@ -268,7 +246,6 @@ const FullMarketEvent = () => {
                         eventId
                       )
                     }
-                    
                   >
                     {runner?.ex?.availableToBack[1]?.price}
                     <br />{" "}
@@ -551,15 +528,7 @@ const FullMarketEvent = () => {
         {/* Fancy Bet Tabs */}
         <div className="fancy-tabs-box">
           <div className="fancy-tabs">
-            {[
-              "All",
-              "Fancy",
-              "Ball by Ball",
-              "Meter Market",
-              "Khadda",
-              "Lottery",
-              "Odd/Even",
-            ].map((tab) => (
+            {["All", "Fancy"].map((tab) => (
               <button
                 key={tab}
                 className={activeTab === tab ? "active-tab" : ""}

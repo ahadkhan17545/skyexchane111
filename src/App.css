@@ -1,9 +1,29 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Tahoma, Helvetica, sans-serif;
 }
-body{
+body {
   background-color: #eee;
+}
+
+.activeBackbord {
+  background-color: #1a8ee1 !important;
+  color: #fff !important;
+  box-shadow: inset 0 1px 3px #00000080;
+}
+
+.activeLaykbord {
+  background-color: #f4496d !important;
+  color: #fff !important;
+  box-shadow: inset 0 1px 3px #00000080;
+}
+
+.activeLaykbord span {
+  color: white !important;
+}
+
+.activeBackbord span {
+  color: white !important;
 }

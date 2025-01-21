@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import topIcon from "../../public/betlimit.svg";
 import grow from "../../public/grow.svg";
+import BetComponent from "./BetComponent";
 
 const matchData = {
   matchOdds: [
@@ -141,6 +142,20 @@ const MatchOddsMobile = ({ data, runningData }) => {
     console.log(`Team: ${team}, Odds: ${odds}, Type: ${type}`);
   };
 
+  const [openMenu, setOpenMenu] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedType, setSelectedType] = useState(null);
+
+  const [activeOdds, setActiveOdds] = useState({ index: null, type: null });
+  const handleToggle = (index, value, type) => {
+    setSelectedIndex(index);
+    setSelectedValue(value);
+    setSelectedType(type);
+    setActiveOdds({ index, type });
+    setOpenMenu(index); // Open the menu for the selected index
+  };
+
   return (
     <div className="mobile-odds" style={styles.container}>
       {/* Header Section */}
@@ -180,36 +195,80 @@ const MatchOddsMobile = ({ data, runningData }) => {
         const runnerData = runningData.find(
           (data) => data.selectionId === runner.selectionId
         );
+
         return (
-          <div style={styles.matchOddsSection} key={index}>
-            <div style={styles.teamRow}>
-              <div style={styles.teamName}>
-                {runnerData ? runnerData.runnerName : ""}
-              </div>
-
-              <div style={styles.oddsContainerMain}>
-                <div style={styles.oddsContainer}>
-                  <div style={{ ...styles.oddsBox, ...styles.backOdds }}>
-                    {runner?.ex?.availableToBack[0]?.price}
-                    <br />
-                    <span style={styles.oddsVolume}>
-                      {runner?.ex?.availableToBack[0]?.size}
-                    </span>
-                  </div>
+          <>
+            <div style={styles.matchOddsSection} key={index}>
+              <div style={styles.teamRow}>
+                <div style={styles.teamName}>
+                  {runnerData ? runnerData.runnerName : ""}
                 </div>
 
-                <div style={styles.oddsContainer}>
-                  <div style={{ ...styles.oddsBox, ...styles.layOdds }}>
-                    {runner?.ex?.availableToLay[2]?.price}
-                    <br />
-                    <span style={styles.oddsVolume}>
-                      {runner?.ex?.availableToLay[2]?.size}
-                    </span>
+                <div style={styles.oddsContainerMain}>
+                  <div
+                    style={styles.oddsContainer}
+                    onClick={() =>
+                      handleToggle(
+                        index,
+                        runner?.ex?.availableToBack[0]?.price,
+                        "Back"
+                      )
+                    }
+                  >
+                    <div
+                      className={
+                        activeOdds.index === index && activeOdds.type === "Back"
+                          ? "activeBackbord"
+                          : ""
+                      }
+                      style={{ ...styles.oddsBox, ...styles.backOdds }}
+                    >
+                      {runner?.ex?.availableToBack[0]?.price}
+                      <br />
+                      <span style={styles.oddsVolume}>
+                        {runner?.ex?.availableToBack[0]?.size}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div
+                    style={styles.oddsContainer}
+                    onClick={() =>
+                      handleToggle(
+                        index,
+                        runner?.ex?.availableToLay[2]?.price,
+                        "Lay"
+                      )
+                    }
+                  >
+                    <div
+                      className={
+                        activeOdds.index === index && activeOdds.type === "Lay"
+                          ? "activeLaykbord"
+                          : ""
+                      }
+                      style={{ ...styles.oddsBox, ...styles.layOdds }}
+                    >
+                      {runner?.ex?.availableToLay[2]?.price}
+                      <br />
+                      <span style={styles.oddsVolume}>
+                        {runner?.ex?.availableToLay[2]?.size}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
+
+              <BetComponent
+                openMenu={openMenu}
+                index={index}
+                setOpenMenu={setOpenMenu}
+                selectedIndex={selectedIndex}
+                selectedValue={selectedValue}
+                selectedType={selectedType}
+              />
             </div>
-          </div>
+          </>
         );
       })}
     </div>
