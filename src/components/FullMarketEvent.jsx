@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../assets/styles/FullMarketEvent.css";
 import { BsPinFill } from "react-icons/bs";
 import { IoMdRefresh } from "react-icons/io";
@@ -13,6 +13,9 @@ import BookmakMobile from "./BookmakMobile";
 import shape from "../../public/bg-fanctbet_rules.svg";
 import pinshape from "../../public/pinshape.svg";
 import FancyBetMobile from "./FancyBetMobile";
+import { useSearchParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchMarketOdds } from "../redux/slices/fullmarketSlice";
 
 const matchData = {
   matchOdds: [
@@ -34,6 +37,40 @@ const matchData = {
 };
 
 const FullMarketEvent = () => {
+  const dispatch = useDispatch();
+  const { data, loading, error, runningData } = useSelector(
+    (state) => state.marketOdds
+  );
+
+
+  const [searchParams] = useSearchParams();
+
+  const eventType = searchParams.get("eventType");
+  const eventId = searchParams.get("eventId");
+  const marketId = searchParams.get("marketId");
+  const competitionId = searchParams.get("competitionId");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (eventType && eventId && marketId && competitionId) {
+        try {
+          const marketOdds = dispatch(
+            fetchMarketOdds({ eventType, competitionId, eventId, marketId })
+          );
+
+          await Promise.allSettled([marketOdds]);
+        } catch (error) {
+          console.error("Error fetching market odds:", error);
+        }
+      }
+    };
+
+    fetchData();
+    const interval = setInterval(fetchData, 3000);
+
+    return () => clearInterval(interval);
+  }, [dispatch, eventType, eventId, marketId, competitionId]);
+
   const { setSelectedData, selectedData } = useContext(AppContext);
   const [activeTab, setActiveTab] = useState("Fancy");
   const [selectedValue, setSelectedValue] = useState(null);
@@ -98,6 +135,7 @@ const FullMarketEvent = () => {
       <div className="top-header"></div>
 
       {/* Live Match Tracking Section */}
+
       <div style={{ backgroundColor: "white" }}>
         <div className="live-match-track">
           <div className="live-match-track__box">
@@ -156,46 +194,139 @@ const FullMarketEvent = () => {
             </tr>
           </thead>
           <tbody>
-            {matchData.matchOdds.map((team, index) => (
-              <tr key={index}>
-                {/* Team Name and Icon */}
-                <td
-                  style={{
-                    textAlign: "start",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "5px",
-                  }}
-                >
-                  <img src={iconChart} />
-                  {team.team}
-                </td>
-                {/* Back Odds */}
-                {team.back.map((odds, i) => (
+            {data?.data[0]?.runners?.map((runner, index) => {
+              const runnerData = runningData.find(
+                (data) => data.selectionId === runner.selectionId
+              );
+
+              return (
+                <tr key={index}>
                   <td
-                    key={`back-${i}`}
-                    onClick={() => handleDataClick(team.team, odds, "Back")}
+                    style={{
+                      textAlign: "start",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                    }}
                   >
-                    {odds} <br /> <span style={{ fontSize: "8px" }}>1,646</span>
+                    <img src={iconChart} alt="Team Icon" />
+                    {/* Display the runnerName from runningData */}
+                    {runnerData ? runnerData.runnerName : ""}
                   </td>
-                ))}
-                {/* Lay Odds */}
-                {team.lay.map((odds, i) => (
+
+                  {/* Back Odds */}
                   <td
-                    key={`lay-${i}`}
-                    onClick={() => handleDataClick(team.team, odds, "Lay")}
+                    onClick={() =>
+                      handleDataClick(
+                        runnerData.runnerName,
+                        runner?.ex?.availableToBack[2]?.price,
+                        "Back",
+                        eventId
+                      )
+                    }
                   >
-                    {odds} <br /> <span style={{ fontSize: "8px" }}>1,846</span>
+                    {runner?.ex?.availableToBack[2]?.price}
+                    <br />{" "}
+                    <span style={{ fontSize: "8px" }}>
+                      {runner?.ex?.availableToBack[2]?.size}
+                    </span>
                   </td>
-                ))}
-              </tr>
-            ))}
+
+                  <td
+                    onClick={() =>
+                      handleDataClick(
+                        runnerData.runnerName,
+                        runner?.ex?.availableToBack[1]?.price,
+                        "Back",
+                        eventId
+                      )
+                    }
+                  >
+                    {runner?.ex?.availableToBack[1]?.price}
+                    <br />{" "}
+                    <span style={{ fontSize: "8px" }}>
+                      {runner?.ex?.availableToBack[1]?.size}
+                    </span>
+                  </td>
+
+                  <td
+                    onClick={() =>
+                      handleDataClick(
+                        runnerData.runnerName,
+                        runner?.ex?.availableToBack[0]?.price,
+                        "Back",
+                        eventId
+                      )
+                    }
+                  >
+                    {runner?.ex?.availableToBack[0]?.price}
+                    <br />{" "}
+                    <span style={{ fontSize: "8px" }}>
+                      {runner?.ex?.availableToBack[0]?.size}
+                    </span>
+                  </td>
+
+                  {/* Lay Odds */}
+
+                  <td
+                    onClick={() =>
+                      handleDataClick(
+                        runnerData.runnerName,
+                        runner?.ex?.availableToLay[2]?.price,
+                        "Lay",
+                        eventId
+                      )
+                    }
+                  >
+                    {runner?.ex?.availableToLay[2]?.price}
+                    <br />{" "}
+                    <span style={{ fontSize: "8px" }}>
+                      {runner?.ex?.availableToLay[2]?.size}
+                    </span>
+                  </td>
+
+                  <td
+                    onClick={() =>
+                      handleDataClick(
+                        runnerData.runnerName,
+                        runner?.ex?.availableToLay[1]?.price,
+                        "Lay",
+                        eventId
+                      )
+                    }
+                  >
+                    {runner?.ex?.availableToLay[1]?.price}
+                    <br />{" "}
+                    <span style={{ fontSize: "8px" }}>
+                      {runner?.ex?.availableToLay[1]?.size}
+                    </span>
+                  </td>
+
+                  <td
+                    onClick={() =>
+                      handleDataClick(
+                        runnerData.runnerName,
+                        runner?.ex?.availableToLay[0]?.price,
+                        "Lay",
+                        eventId
+                      )
+                    }
+                  >
+                    {runner?.ex?.availableToLay[0]?.price}
+                    <br />{" "}
+                    <span style={{ fontSize: "8px" }}>
+                      {runner?.ex?.availableToLay[0]?.size}
+                    </span>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
 
       {/* Live Match mobile Tracking Section */}
-        <MatchOddsMobile />
+        <MatchOddsMobile data={data} runningData={runningData}/>
       {/* Live Match mobile Tracking Section */}
 
       {/* Bookmaker Market Section */}
@@ -266,7 +397,7 @@ const FullMarketEvent = () => {
                           ? "active"
                           : ""
                       }`}
-                      onClick={() => handleBackToggle(index)} 
+                      onClick={() => handleBackToggle(index)}
                       style={{ cursor: "pointer" }}
                     >
                       {team.back.map((odd, i) => (
@@ -285,7 +416,7 @@ const FullMarketEvent = () => {
                           ? "active"
                           : ""
                       }`}
-                      onClick={() => handleLayToggle(index)} 
+                      onClick={() => handleLayToggle(index)}
                       style={{ cursor: "pointer" }}
                     >
                       {team.lay.map((odd, i) => (
@@ -368,7 +499,7 @@ const FullMarketEvent = () => {
       </div>
 
       {/* Bookmaker Market mobile Section */}
-        <BookmakMobile />
+      <BookmakMobile />
       {/* Bookmaker Market mobile Section */}
 
       {/* Fancy Bet Section with Tabs */}

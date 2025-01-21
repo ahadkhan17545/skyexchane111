@@ -1,7 +1,6 @@
 import React from "react";
-import topIcon from '../../public/betlimit.svg'
-import grow from '../../public/grow.svg'
-
+import topIcon from "../../public/betlimit.svg";
+import grow from "../../public/grow.svg";
 
 const matchData = {
   matchOdds: [
@@ -94,15 +93,15 @@ const styles = {
     borderRight: "1px solid #ffff",
     fontWeight: "bold",
     fontSize: "3.4666666667vw",
-    padding:" 1.6vw",
-    color:"#1e1e1e"
+    padding: " 1.6vw",
+    color: "#1e1e1e",
   },
   layOdds: {
     backgroundColor: "#faa9ba",
     fontWeight: "bold",
     fontSize: "12px",
-      padding:" 1.6vw",
-        color:"#1e1e1e"
+    padding: " 1.6vw",
+    color: "#1e1e1e",
   },
   oddsVolume: {
     fontSize: "10px",
@@ -129,18 +128,19 @@ const styles = {
     width: "18.6666666667vw",
     marginTop: "10px",
   },
-  Matched1:{
+  Matched1: {
     fontSize: "10px",
   },
-  Matched1Item:{
+  Matched1Item: {
     fontSize: "11px",
-  }
+  },
 };
 
-const MatchOddsMobile = () => {
+const MatchOddsMobile = ({ data, runningData }) => {
   const handleDataClick = (team, odds, type) => {
     console.log(`Team: ${team}, Odds: ${odds}, Type: ${type}`);
   };
+
 
   return (
     <div className="mobile-odds" style={styles.container}>
@@ -155,12 +155,16 @@ const MatchOddsMobile = () => {
               style={{ width: "6.6666666667vw", height: "6.6666666667vw" }}
             />
           </div>
-          <div style={{display:"flex", gap:"5px", paddingLeft:"5px"}}>
-            <img style={{width:"6.6666666667vw", height:"6.6666666667vw"}}  src={grow} alt="" />
-           <div style={styles.matchedItem}>
-           <span style={styles.Matched1}>Matched</span>
-           <span style={styles.Matched1Item}>PTE 5,332,843</span>
-           </div>
+          <div style={{ display: "flex", gap: "5px", paddingLeft: "5px" }}>
+            <img
+              style={{ width: "6.6666666667vw", height: "6.6666666667vw" }}
+              src={grow}
+              alt=""
+            />
+            <div style={styles.matchedItem}>
+              <span style={styles.Matched1}>Matched</span>
+              <span style={styles.Matched1Item}>PTE 5,332,843</span>
+            </div>
           </div>
         </div>
 
@@ -171,57 +175,36 @@ const MatchOddsMobile = () => {
         </div>
       </div>
 
-      {/* Match Odds Section */}
-      <div style={styles.matchOddsSection}>
-        {matchData.matchOdds.map((team, index) => (
-          <div key={index} style={styles.teamRow}>
-            {/* Team Name */}
-            <div style={styles.teamName}>{team.team}</div>
+      {data?.data[0]?.runners?.map((runner, index) => {
+        const runnerData = runningData.find(
+          (data) => data.selectionId === runner.selectionId
+        );
+        return (
+          <div style={styles.matchOddsSection} key={index}>
+            <div style={styles.teamRow}>
+              <div style={styles.teamName}>{runnerData ? runnerData.runnerName : ""}</div>
 
-            <div style={styles.oddsContainerMain}>
-              {/* Back Odds */}
-              <div style={styles.oddsContainer}>
-                {team.back.map(
-                  (odds, i) =>
-                    // Check to hide the first 2 elements of 'back'
-                    i !== 0 &&
-                    i !== 1 && (
-                      <div
-                        key={`back-${i}`}
-                        style={{ ...styles.oddsBox, ...styles.backOdds }}
-                        onClick={() => handleDataClick(team.team, odds, "Back")}
-                      >
-                        {odds}
-                        <br />
-                        <span style={styles.oddsVolume}>24,094</span>
-                      </div>
-                    )
-                )}
-              </div>
+              <div style={styles.oddsContainerMain}>
+                <div style={styles.oddsContainer}>
+                  <div style={{ ...styles.oddsBox, ...styles.backOdds }}>
+                    {runner?.ex?.availableToBack[0]?.price}
+                    <br />
+                    <span style={styles.oddsVolume}>{runner?.ex?.availableToBack[0]?.size}</span>
+                  </div>
+                </div>
 
-              {/* Lay Odds */}
-              <div style={styles.oddsContainer}>
-                {team.lay.map(
-                  (odds, i) =>
-                    // Check to hide the last 2 elements of 'lay'
-                    i !== team.lay.length - 2 &&
-                    i !== team.lay.length - 1 && (
-                      <div
-                        key={`lay-${i}`}
-                        style={{ ...styles.oddsBox, ...styles.layOdds }}
-                        onClick={() => handleDataClick(team.team, odds, "Lay")}
-                      >
-                        {odds}
-                        <br />
-                        <span style={styles.oddsVolume}>7</span>
-                      </div>
-                    )
-                )}
+                <div style={styles.oddsContainer}>
+                  <div style={{ ...styles.oddsBox, ...styles.layOdds }}>
+                    {runner?.ex?.availableToLay[2]?.price}
+                    <br />
+                    <span style={styles.oddsVolume}>{runner?.ex?.availableToLay[2]?.size}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        ))}
-      </div>
+        );
+      })}
     </div>
   );
 };

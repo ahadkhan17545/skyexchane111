@@ -5,6 +5,10 @@ import { AppContext } from "../Context/AppContext";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMatchesByEventId } from "../redux/slices/matchSlice";
+import {
+  fetchMarketOdds,
+  setRunningData,
+} from "../redux/slices/fullmarketSlice";
 import LinkEventBox from "./LinkEventBox";
 import Loading from "./Loading";
 
@@ -24,6 +28,7 @@ const InPlayCard = () => {
   const { matches: tennisMatches } = useSelector(
     (state) => state.matches.tennis
   );
+
 
   const handleDataClick = (teamName, odds, type, eventId) => {
     const newData = { teamName, odds, oddsType: type };
@@ -97,6 +102,10 @@ const InPlayCard = () => {
     return () => clearInterval(interval);
   }, [dispatch]);
 
+  const handleMarket = (runningData) => {
+    dispatch(setRunningData(runningData));
+  };
+
   if (isLoading) {
     return <Loading />;
   }
@@ -129,7 +138,10 @@ const InPlayCard = () => {
                 <div className="innerlink2" key={i}>
                   <div className="linkbox">
                     <div className="innerlink">
-                      <Link to={`/fullMarket?id=1`}>
+                      <Link
+                        to={`/fullMarket?eventType=4&eventId=${e.eventId}&marketId=${e.marketId}&competitionId=${e.competitionId}`}
+                        onClick={() => handleMarket(e.matchRunners)}
+                      >
                         <img className="icon-in_play" src={dots} alt="dots" />{" "}
                         {e.eventName}
                       </Link>
@@ -184,7 +196,10 @@ const InPlayCard = () => {
                 <div className="innerlink2" key={i}>
                   <div className="linkbox">
                     <div className="innerlink">
-                      <Link to={`/fullMarket?id=1`}>
+                      <Link
+                        to={`/fullMarket?eventType=1&eventId=${e.eventId}&marketId=${e.marketId}&competitionId=${e.competitionId}`}
+                        onClick={() => handleMarket(e.matchRunners)}
+                      >
                         <img className="icon-in_play" src={dots} alt="dots" />{" "}
                         {e.eventName}
                       </Link>
@@ -239,7 +254,10 @@ const InPlayCard = () => {
                 <div className="innerlink2" key={i}>
                   <div className="linkbox">
                     <div className="innerlink">
-                      <Link to={`/fullMarket?id=1`}>
+                      <Link
+                        to={`/fullMarket?eventType=2&eventId=${e.eventId}&marketId=${e.marketId}&competitionId=${e.competitionId}`}
+                        onClick={() => handleMarket(e.matchRunners)}
+                      >
                         <img className="icon-in_play" src={dots} alt="dots" />{" "}
                         {e.eventName}
                       </Link>

@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 
 import matchesReducer from './slices/matchSlice';
+import marketOddsReducer from "./slices/fullmarketSlice";
 
 // Create Saga Middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -11,6 +12,7 @@ const sagaMiddleware = createSagaMiddleware();
 // Combine reducers
 const rootReducer = combineReducers({
   matches: matchesReducer,
+  marketOdds: marketOddsReducer,
 });
 
 // Persist config

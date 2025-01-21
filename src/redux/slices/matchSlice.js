@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Async Thunk to fetch matches
+
 export const fetchMatchesByEventId = createAsyncThunk(
   "matches/fetchMatchesByEventId",
   async ({ eventId, sport }, { rejectWithValue }) => {
