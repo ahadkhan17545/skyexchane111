@@ -16,7 +16,7 @@ const LinkEventBox = ({
             onClick={() =>
               handleDataClick(
                 eventName,
-                filteredOdds?.runners[0]?.ex?.availableToBack[index]?.price,
+                filteredOdds?.runners[0]?.ex?.availableToBack[index]?.price ,
                 "Back",
                 eventId
               )

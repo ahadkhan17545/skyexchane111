@@ -88,6 +88,7 @@ const styles = {
     cursor: "pointer",
     fontSize: "3.4666666667vw",
     width: "18.6666666667vw",
+    height:"42px",
   },
   backOdds: {
     backgroundColor: "#72bbef",
@@ -178,7 +179,7 @@ const MatchOddsMobile = ({ data, runningData }) => {
             <div style={styles.matchedItem}>
               <span style={styles.Matched1}>Matched</span>
               <span style={styles.Matched1Item}>
-                PTE {data?.data?.[0].totalMatched}
+                PTE {data?.data?.[0]?.totalMatched || 0}
               </span>
             </div>
           </div>
@@ -223,7 +224,7 @@ const MatchOddsMobile = ({ data, runningData }) => {
                       }
                       style={{ ...styles.oddsBox, ...styles.backOdds }}
                     >
-                      {runner?.ex?.availableToBack[0]?.price}
+                      {runner?.ex?.availableToBack[0]?.price || "--"}
                       <br />
                       <span style={styles.oddsVolume}>
                         {runner?.ex?.availableToBack[0]?.size}
@@ -249,7 +250,7 @@ const MatchOddsMobile = ({ data, runningData }) => {
                       }
                       style={{ ...styles.oddsBox, ...styles.layOdds }}
                     >
-                      {runner?.ex?.availableToLay[2]?.price}
+                      {runner?.ex?.availableToLay[2]?.price || "--"}
                       <br />
                       <span style={styles.oddsVolume}>
                         {runner?.ex?.availableToLay[2]?.size}

@@ -424,6 +424,7 @@
     height: auto;
     line-height: 2.2;
     font-weight: 600;
+    padding-left: 7px;
   }
   .play-btn{
     width: 4.5333333333vw;

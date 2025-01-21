@@ -41,15 +41,15 @@ const FullMarketEvent = () => {
   const { data, loading, error, runningData } = useSelector(
     (state) => state.marketOdds
   );
-
+  
   const [searchParams] = useSearchParams();
-
+  
   const eventType = searchParams.get("eventType");
   const eventId = searchParams.get("eventId");
   const marketId = searchParams.get("marketId");
   const competitionId = searchParams.get("competitionId");
   const [previousData, setPreviousData] = useState(null);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       if (eventType && eventId && marketId && competitionId) {
@@ -57,8 +57,10 @@ const FullMarketEvent = () => {
           const marketOdds = await dispatch(
             fetchMarketOdds({ eventType, competitionId, eventId, marketId })
           );
-
+  
+          // Check if the fetched data is different from the previous data
           if (JSON.stringify(previousData) !== JSON.stringify(marketOdds)) {
+            // Set the new data as previousData
             setPreviousData(marketOdds);
           }
         } catch (error) {
@@ -66,15 +68,17 @@ const FullMarketEvent = () => {
         }
       }
     };
-
+  
     fetchData();
+  
 
-    if (previousData) {
-      const interval = setInterval(fetchData, 2000);
-
+      const interval = setInterval(() => {
+        fetchData();
+      }, 2000);
+  
       return () => clearInterval(interval);
-    }
-  }, [dispatch]);
+
+  }, [dispatch,]);
 
   const { setSelectedData, selectedData } = useContext(AppContext);
   const [activeTab, setActiveTab] = useState("Fancy");
@@ -175,7 +179,7 @@ const FullMarketEvent = () => {
           </div>
           <div className="max-num">Max 400</div>
           <div className="Matched-num">
-            Matched <b>PTE {data?.data?.[0].totalMatched}</b>
+            Matched <b>PTE {data?.data?.[0]?.totalMatched || 0}</b>
           </div>
         </div>
       </div>
@@ -230,7 +234,7 @@ const FullMarketEvent = () => {
                       )
                     }
                   >
-                    {runner?.ex?.availableToBack[2]?.price}
+                    {runner?.ex?.availableToBack[2]?.price || "--"}
                     <br />{" "}
                     <span style={{ fontSize: "8px" }}>
                       {runner?.ex?.availableToBack[2]?.size}
@@ -247,7 +251,7 @@ const FullMarketEvent = () => {
                       )
                     }
                   >
-                    {runner?.ex?.availableToBack[1]?.price}
+                    {runner?.ex?.availableToBack[1]?.price || "--"}
                     <br />{" "}
                     <span style={{ fontSize: "8px" }}>
                       {runner?.ex?.availableToBack[1]?.size}
@@ -264,7 +268,7 @@ const FullMarketEvent = () => {
                       )
                     }
                   >
-                    {runner?.ex?.availableToBack[0]?.price}
+                    {runner?.ex?.availableToBack[0]?.price || "--"}
                     <br />{" "}
                     <span style={{ fontSize: "8px" }}>
                       {runner?.ex?.availableToBack[0]?.size}
@@ -283,7 +287,7 @@ const FullMarketEvent = () => {
                       )
                     }
                   >
-                    {runner?.ex?.availableToLay[2]?.price}
+                    {runner?.ex?.availableToLay[2]?.price || "--"}
                     <br />{" "}
                     <span style={{ fontSize: "8px" }}>
                       {runner?.ex?.availableToLay[2]?.size}
@@ -300,7 +304,7 @@ const FullMarketEvent = () => {
                       )
                     }
                   >
-                    {runner?.ex?.availableToLay[1]?.price}
+                    {runner?.ex?.availableToLay[1]?.price || "--"}
                     <br />{" "}
                     <span style={{ fontSize: "8px" }}>
                       {runner?.ex?.availableToLay[1]?.size}
@@ -317,7 +321,7 @@ const FullMarketEvent = () => {
                       )
                     }
                   >
-                    {runner?.ex?.availableToLay[0]?.price}
+                    {runner?.ex?.availableToLay[0]?.price || "--"}
                     <br />{" "}
                     <span style={{ fontSize: "8px" }}>
                       {runner?.ex?.availableToLay[0]?.size}
