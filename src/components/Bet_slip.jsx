@@ -16,6 +16,9 @@ const Bet_slip = () => {
     return dataArray;
   };
 
+  console.log("data", stakes);
+  
+
   const selected = getSelectedData();
 
   const handleClearAll = () => {
@@ -131,7 +134,7 @@ const Bet_slip = () => {
           <div>
             <div className="bet-actions">
               <p className="Liability">
-                Liability <span>500.00</span>
+                Liability <span>{stakes[0] || 0}</span>
               </p>
               <div className="bet-actions-btn">
                 <button className="cancel-btn" onClick={handleClearAll}>

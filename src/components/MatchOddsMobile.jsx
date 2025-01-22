@@ -139,6 +139,8 @@ const MatchOddsMobile = ({ data, runningData, betData }) => {
     setOpenMenu(index);
   };
 
+  console.log("selectedType", selectedType);
+
   return (
     <div className="mobile-odds" style={styles.container}>
       {/* Header Section */}
@@ -189,7 +191,14 @@ const MatchOddsMobile = ({ data, runningData, betData }) => {
                   <span
                     style={{
                       fontSize: "9px",
-                      color: betData.index === index ? "green" : "red",
+                      color:
+                        selectedType === "Lay"
+                          ? betData.index === index
+                            ? "red"
+                            : "green"
+                          : betData.index === index
+                          ? "green"
+                          : "red", // Color inverted based on selectedType
                       display: "flex",
                       alignItems: "center",
                       marginTop: "3px",

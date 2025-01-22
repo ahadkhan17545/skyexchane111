@@ -926,7 +926,6 @@ td {
   color: #ffb200;
   background-image: linear-gradient(180deg, #474747 0%, #070707 100%);
   border-color: #222;
-  opacity: 0.4;
 }
 .btn-list {
   display: flex;

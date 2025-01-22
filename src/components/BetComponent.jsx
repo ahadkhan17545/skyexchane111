@@ -11,7 +11,9 @@ const BetComponent = ({
   selectedType,
 }) => {
   const [currentValue, setCurrentValue] = useState("");
-  const [calculateValue, setCalculateValue] = useState(0);
+  const [calculateValue, setCalculateValue] = useState();
+
+  console.log("current value", currentValue);
 
   const dispatch = useDispatch();
 
@@ -58,7 +60,7 @@ const BetComponent = ({
 
   const handleDeleteClick = () => {
     setCurrentValue((prevValue) => {
-      const newValue = prevValue.toString().slice(0, -1) || "0";
+      const newValue = prevValue.toString().slice(0, -1) || "";
       updateCalculatedValue(parseFloat(newValue) || 0);
       return newValue;
     });
@@ -105,7 +107,7 @@ const BetComponent = ({
             </li>
             <li>
               <p className="dynamic-min-bet">
-                Min Bet: <strong id="dynamicMinBet"></strong>
+                Min Bet: 1<strong id="dynamicMinBet"></strong>
               </p>
               <div id="inputStake" className="input-num input-stake">
                 <a
@@ -180,7 +182,15 @@ const BetComponent = ({
 
           <div className="mobile-cls-bet">
             <button onClick={handleCancelClick}>Cancel</button>
-            <button>Place Bets</button>
+            <button
+              disabled={!currentValue}
+              style={{
+                opacity:currentValue ? "1" : "0.4",
+                cursor: currentValue ? "pointer" : "not-allowed",
+              }}
+            >
+              Place Bets
+            </button>
           </div>
 
           <div className="bet-setting-box">
