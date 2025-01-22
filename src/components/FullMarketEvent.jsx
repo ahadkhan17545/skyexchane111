@@ -38,18 +38,19 @@ const matchData = {
 
 const FullMarketEvent = () => {
   const dispatch = useDispatch();
-  const { data, loading, error, runningData } = useSelector(
+  const { data, loading, error, runningData, betData } = useSelector(
     (state) => state.marketOdds
   );
-  
+
+
   const [searchParams] = useSearchParams();
-  
+
   const eventType = searchParams.get("eventType");
   const eventId = searchParams.get("eventId");
   const marketId = searchParams.get("marketId");
   const competitionId = searchParams.get("competitionId");
   const [previousData, setPreviousData] = useState(null);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       if (eventType && eventId && marketId && competitionId) {
@@ -57,10 +58,8 @@ const FullMarketEvent = () => {
           const marketOdds = await dispatch(
             fetchMarketOdds({ eventType, competitionId, eventId, marketId })
           );
-  
-          // Check if the fetched data is different from the previous data
+
           if (JSON.stringify(previousData) !== JSON.stringify(marketOdds)) {
-            // Set the new data as previousData
             setPreviousData(marketOdds);
           }
         } catch (error) {
@@ -68,17 +67,15 @@ const FullMarketEvent = () => {
         }
       }
     };
-  
+
     fetchData();
-  
 
-      const interval = setInterval(() => {
-        fetchData();
-      }, 2000);
-  
-      return () => clearInterval(interval);
+    const interval = setInterval(() => {
+      fetchData();
+    }, 5000);
 
-  }, [dispatch,]);
+    return () => clearInterval(interval);
+  }, [dispatch]);
 
   const { setSelectedData, selectedData } = useContext(AppContext);
   const [activeTab, setActiveTab] = useState("Fancy");
@@ -143,8 +140,6 @@ const FullMarketEvent = () => {
       {/* Top Header Section */}
       <div className="top-header"></div>
 
-      {/* Live Match Tracking Section */}
-
       <div style={{ backgroundColor: "white" }}>
         <div className="live-match-track">
           <div className="live-match-track__box">
@@ -204,7 +199,7 @@ const FullMarketEvent = () => {
           </thead>
           <tbody>
             {data?.data[0]?.runners?.map((runner, index) => {
-              const runnerData = runningData.find(
+              const runnerData = runningData?.find(
                 (data) => data.selectionId === runner.selectionId
               );
 
@@ -335,7 +330,7 @@ const FullMarketEvent = () => {
       </div>
 
       {/* Live Match mobile Tracking Section */}
-      <MatchOddsMobile data={data} runningData={runningData} />
+        <MatchOddsMobile data={data} runningData={runningData} betData={betData}/>
       {/* Live Match mobile Tracking Section */}
 
       {/* Bookmaker Market Section */}
@@ -508,7 +503,7 @@ const FullMarketEvent = () => {
       </div>
 
       {/* Bookmaker Market mobile Section */}
-      <BookmakMobile />
+        <BookmakMobile />
       {/* Bookmaker Market mobile Section */}
 
       {/* Fancy Bet Section with Tabs */}

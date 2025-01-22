@@ -12,7 +12,7 @@ import Loading from "./Loading";
 const InPlayCard = () => {
   const { setSelectedData } = useContext(AppContext);
   const [clickedButtons, setClickedButtons] = useState({});
-  const [isLoading, setIsLoading] = useState(true); // Loader state
+  const [isLoading, setIsLoading] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -25,7 +25,6 @@ const InPlayCard = () => {
   const { matches: tennisMatches } = useSelector(
     (state) => state.matches.tennis
   );
-
 
   const handleDataClick = (teamName, odds, type, eventId) => {
     const newData = { teamName, odds, oddsType: type };
@@ -92,7 +91,6 @@ const InPlayCard = () => {
         setIsLoading(false);
       }
     };
-
     fetchData();
     const interval = setInterval(fetchData, 30000);
 
@@ -103,9 +101,9 @@ const InPlayCard = () => {
     dispatch(setRunningData(runningData));
   };
 
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>

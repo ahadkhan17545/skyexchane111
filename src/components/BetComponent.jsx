@@ -1,46 +1,94 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setBetData } from "../redux/slices/fullmarketSlice";
 
-const BetComponent = ({ openMenu, index, setOpenMenu, selectedIndex, selectedValue, selectedType }) => {
+const BetComponent = ({
+  openMenu,
+  index,
+  setOpenMenu,
+  selectedIndex,
+  selectedValue,
+  selectedType,
+}) => {
+  const [currentValue, setCurrentValue] = useState("");
+  const [calculateValue, setCalculateValue] = useState(0);
 
-  const [currentValue, setCurrentValue] = useState(0);
-  
+  const dispatch = useDispatch();
+
+  const updateCalculatedValue = (value) => {
+    const addedValue = value;
+    const calculatedValue = selectedValue * value - value;
+
+    setCalculateValue(calculatedValue);
+    dispatch(
+      setBetData({
+        calculateValue: calculatedValue,
+        index: selectedIndex,
+        addedValue: addedValue,
+      })
+    );
+  };
+
   const handleCancelClick = () => {
-    setOpenMenu(null); 
+    setOpenMenu(null);
+    setCurrentValue("");
+    setCalculateValue("");
+
+    dispatch(
+      setBetData({
+        calculateValue: null,
+        addedValue: null,
+        index: null,
+      })
+    );
   };
 
   const handleQuickButtonClick = (value) => {
-    setCurrentValue(value); 
-    const newValue = selectedIndex * currentValue;
-    console.log("new value", newValue);
+    setCurrentValue(value);
+    updateCalculatedValue(value);
   };
 
   const handleNumPadClick = (num) => {
-    setCurrentValue((prevValue) => prevValue + num);
-  
+    setCurrentValue((prevValue) => {
+      const newValue = prevValue.toString() + num.toString();
+      updateCalculatedValue(parseFloat(newValue) || 0);
+      return newValue;
+    });
   };
 
   const handleDeleteClick = () => {
     setCurrentValue((prevValue) => {
-      return prevValue.toString().slice(0, -1);
+      const newValue = prevValue.toString().slice(0, -1) || "0";
+      updateCalculatedValue(parseFloat(newValue) || 0);
+      return newValue;
     });
   };
 
-
   const handleIncreaseClick = () => {
-    setCurrentValue((prevValue) => parseFloat(prevValue) + 1);
+    setCurrentValue((prevValue) => {
+      const newValue = parseFloat(prevValue) + 1;
+      updateCalculatedValue(newValue);
+      return newValue;
+    });
   };
 
   const handleDecreaseClick = () => {
-    setCurrentValue((prevValue) => (parseFloat(prevValue) > 0 ? parseFloat(prevValue) - 1 : 0)); // Decrease value by 1, ensuring it doesn't go below 0
+    setCurrentValue((prevValue) => {
+      const newValue =
+        parseFloat(prevValue) > 0 ? parseFloat(prevValue) - 1 : 0;
+      updateCalculatedValue(newValue);
+      return newValue;
+    });
   };
-
 
   return (
     <>
       {openMenu === index && (
         <div
           style={{
-            backgroundColor: `${selectedType === "Back" ? "#dceaf4" : "#f2e5e8"}`,
+            backgroundColor: `${
+              selectedType === "Back" ? "#dceaf4" : "#f2e5e8"
+            }`,
             display: "flex",
             flexDirection: "column",
             borderBottom: "1px solid #7e97a7",
@@ -64,9 +112,7 @@ const BetComponent = ({ openMenu, index, setOpenMenu, selectedIndex, selectedVal
                   id="stakeDown"
                   className="icon-minus"
                   onClick={handleDecreaseClick}
-                >
-           
-                </a>
+                ></a>
                 <span id="stake" className="typed typeing">
                   {currentValue}
                 </span>
@@ -74,9 +120,7 @@ const BetComponent = ({ openMenu, index, setOpenMenu, selectedIndex, selectedVal
                   id="stakeUp"
                   className="icon-plus"
                   onClick={handleIncreaseClick}
-                >
-              
-                </a>
+                ></a>
               </div>
             </li>
           </ul>
@@ -127,7 +171,11 @@ const BetComponent = ({ openMenu, index, setOpenMenu, selectedIndex, selectedVal
                 </li>
               ))}
             </div>
-            <button id="delete" className="btn-delete" onClick={handleDeleteClick}></button>
+            <button
+              id="delete"
+              className="btn-delete"
+              onClick={handleDeleteClick}
+            ></button>
           </div>
 
           <div className="mobile-cls-bet">

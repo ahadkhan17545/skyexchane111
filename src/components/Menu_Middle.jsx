@@ -38,13 +38,11 @@ const Menu_Middle = ({ cricketMatches, MatchName, loader }) => {
           </div>
         </div>
 
-        {/* {loader ? (
+        {loader ? (
           <Loading />
         ) : (
-       
-        )} */}
-
-        <SportsCard cricketMatches={cricketMatches} MatchName={MatchName} />
+          <SportsCard cricketMatches={cricketMatches} MatchName={MatchName} />
+        )}
 
         <div className="footer-section">
           <Footer />

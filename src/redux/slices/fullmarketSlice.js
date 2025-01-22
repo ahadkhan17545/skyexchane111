@@ -25,11 +25,15 @@ const marketOddsSlice = createSlice({
     data: null,
     loading: false,
     error: null,
-    runningData: null, // Added to store runningData
+    runningData: null,
+    betData: null,
   },
   reducers: {
     setRunningData: (state, action) => {
-      state.runningData = action.payload; // Store runningData in state
+      state.runningData = action.payload;
+    },
+    setBetData: (state, action) => {
+      state.betData = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -49,5 +53,6 @@ const marketOddsSlice = createSlice({
   },
 });
 
-export const { setRunningData } = marketOddsSlice.actions; // Export the reducer action to update runningData
+export const { setRunningData, setBetData, clearBetData } =
+  marketOddsSlice.actions;
 export default marketOddsSlice.reducer;

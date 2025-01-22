@@ -1,44 +1,41 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import createSagaMiddleware from 'redux-saga';
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { persistStore, persistReducer, createTransform } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-import matchesReducer from './slices/matchSlice';
+import matchesReducer from "./slices/matchSlice";
 import marketOddsReducer from "./slices/fullmarketSlice";
 
-// Create Saga Middleware
-const sagaMiddleware = createSagaMiddleware();
+const runningDataTransform = createTransform(
+  (inboundState) => ({ runningData: inboundState.runningData }),
+  (outboundState) => ({ ...outboundState }),
+  { whitelist: ["marketOdds"] }
+);
 
-// Combine reducers
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["marketOdds"],
+  transforms: [runningDataTransform],
+};
+
 const rootReducer = combineReducers({
   matches: matchesReducer,
   marketOdds: marketOddsReducer,
 });
 
-// Persist config
-const persistConfig = {
-  key: 'root', // Key for storage
-  storage,     // Type of storage (localStorage in this case)
-};
-
-// Create a persisted reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// Configure the store
 const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'], // Ignore these actions for serializability
+        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
       },
-    }).concat(sagaMiddleware), // Add Saga middleware
+    }),
 });
 
-// Create the persistor
+
 export const persistor = persistStore(store);
 
-// Export the store
 export default store;
-
-// You can run your sagas later with `sagaMiddleware.run(rootSaga)`
