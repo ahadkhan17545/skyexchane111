@@ -69,6 +69,7 @@ const BetComponent = ({
       toast.success("Bet Confirmed", {
         autoClose: 3000,
       });
+      setOpenMenu(null)
     } else {
       toast.warning("Bet Value Changed", {
         autoClose: 3000,
