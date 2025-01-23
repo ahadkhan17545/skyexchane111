@@ -70,6 +70,7 @@ const BetComponent = ({
         autoClose: 3000,
       });
       setOpenMenu(null)
+      setCurrentValue("");
     } else {
       toast.warning("Bet Value Changed", {
         autoClose: 3000,
