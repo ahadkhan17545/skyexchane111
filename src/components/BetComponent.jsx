@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setBetData } from "../redux/slices/fullmarketSlice";
+import { toast } from "react-toastify";
 
 const BetComponent = ({
   openMenu,
@@ -9,17 +10,78 @@ const BetComponent = ({
   selectedIndex,
   selectedValue,
   selectedType,
+  data,
+  oddsData,
 }) => {
   const [currentValue, setCurrentValue] = useState("");
   const [calculateValue, setCalculateValue] = useState();
+  const [acceptAnyOdds, setAcceptAnyOdds] = useState(false);
+  const [liveValue, setLiveValue] = useState(null);
 
-  console.log("current value", currentValue);
+  const [odsValue, setOdsValue] = useState(selectedValue);
+
+  useEffect(() => {
+    setOdsValue(selectedValue);
+  }, [selectedValue]);
+
+  useEffect(() => {
+    if (acceptAnyOdds) {
+      setOdsValue(liveValue);
+    }
+  }, [acceptAnyOdds, liveValue]);
+  
+  console.log("OdsValue:", odsValue);
+
+  const obsValue = useSelector((state) => state.marketOdds.odsValue);
+  useEffect(() => {
+    const filteredData = data?.data.map((e) => {
+      const filteredRunners = e.runners.filter(
+        (runner) => runner?.selectionId === oddsData?.selectionId
+      );
+
+      if (filteredRunners.length > 0) {
+        let priceField =
+          selectedType === "Back" ? "availableToBack" : "availableToLay";
+
+        const filteredPrices = filteredRunners[0].ex[priceField].filter(
+          (price) => price?.price > 0
+        );
+
+        if (filteredPrices.length > 0) {
+          let selectedPrice = filteredPrices[0];
+
+          if (priceField === "availableToLay" && filteredPrices.length > 1) {
+            selectedPrice = filteredPrices[2];
+          }
+
+          if (!liveValue || liveValue?.price !== selectedPrice?.price) {
+            setLiveValue(selectedPrice?.price);
+          }
+        }
+      }
+    });
+  }, [data, oddsData, selectedType, liveValue]);
+
+
+
+  const handleButtonClick = () => {
+    if (odsValue === liveValue) {
+      toast.success("Bet Confirmed", {
+        autoClose: 3000,
+      });
+    } else {
+      toast.warning("Bet Value Changed", {
+        autoClose: 3000,
+      });
+    }
+  };
+
 
   const dispatch = useDispatch();
 
   const updateCalculatedValue = (value) => {
     const addedValue = value;
-    const calculatedValue = selectedValue * value - value;
+    const calculatedValue = odsValue * value - value;
 
     setCalculateValue(calculatedValue);
     dispatch(
@@ -83,6 +145,11 @@ const BetComponent = ({
     });
   };
 
+  const handleCheckboxChange = (e) => {
+    setAcceptAnyOdds(e.target.checked);
+  };
+
+
   return (
     <>
       {openMenu === index && (
@@ -101,7 +168,7 @@ const BetComponent = ({
               <p className="dynamic-min-bet">&nbsp;</p>
               <div id="inputOdds" className="input-num disable">
                 <span id="odds" className="typed">
-                  {selectedValue}
+                  {odsValue}
                 </span>
               </div>
             </li>
@@ -185,16 +252,21 @@ const BetComponent = ({
             <button
               disabled={!currentValue}
               style={{
-                opacity:currentValue ? "1" : "0.4",
+                opacity: currentValue ? "1" : "0.4",
                 cursor: currentValue ? "pointer" : "not-allowed",
               }}
+              onClick={handleButtonClick}
             >
               Place Bets
             </button>
           </div>
 
           <div className="bet-setting-box">
-            <input type="checkbox" name="acceptAnyOdds" id="acceptAnyOdds" />
+            <input
+              type="checkbox"
+              name="acceptAnyOdds"
+              onChange={handleCheckboxChange}
+            />
             <label htmlFor="acceptAnyOdds">Accept Any Odds</label>
           </div>
         </div>

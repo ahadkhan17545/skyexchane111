@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import topIcon from "../../public/betlimit.svg";
 import grow from "../../public/grow.svg";
 import BetComponent from "./BetComponent";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { setOdsValue } from "../redux/slices/fullmarketSlice";
 
 const styles = {
   container: {
@@ -125,21 +127,36 @@ const styles = {
 };
 
 const MatchOddsMobile = ({ data, runningData, betData }) => {
+  const dispatch = useDispatch();
+
   const [openMenu, setOpenMenu] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [selectedValue, setSelectedValue] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
-
+  const [localBetData, setLocalBetData] = useState(null);
   const [activeOdds, setActiveOdds] = useState({ index: null, type: null });
-  const handleToggle = (index, value, type) => {
+
+  const handleToggle = (index, value, type, selectionId) => {
     setSelectedIndex(index);
     setSelectedValue(value);
     setSelectedType(type);
     setActiveOdds({ index, type });
     setOpenMenu(index);
+
+    dispatch(
+      setOdsValue({
+        obs_Value: value,
+      })
+    );
+
+    const oddsData = {
+      oddsType: type,
+      selectionId: selectionId,
+    };
+
+    setLocalBetData(oddsData);
   };
 
-  console.log("selectedType", selectedType);
 
   return (
     <div className="mobile-odds" style={styles.container}>
@@ -198,7 +215,7 @@ const MatchOddsMobile = ({ data, runningData, betData }) => {
                             : "green"
                           : betData.index === index
                           ? "green"
-                          : "red", // Color inverted based on selectedType
+                          : "red",
                       display: "flex",
                       alignItems: "center",
                       marginTop: "3px",
@@ -219,7 +236,8 @@ const MatchOddsMobile = ({ data, runningData, betData }) => {
                     handleToggle(
                       index,
                       runner?.ex?.availableToBack[0]?.price,
-                      "Back"
+                      "Back",
+                      runner?.selectionId 
                     )
                   }
                 >
@@ -245,7 +263,8 @@ const MatchOddsMobile = ({ data, runningData, betData }) => {
                     handleToggle(
                       index,
                       runner?.ex?.availableToLay[2]?.price,
-                      "Lay"
+                      "Lay",
+                      runner?.selectionId 
                     )
                   }
                 >
@@ -274,6 +293,8 @@ const MatchOddsMobile = ({ data, runningData, betData }) => {
               selectedIndex={selectedIndex}
               selectedValue={selectedValue}
               selectedType={selectedType}
+              data={data}
+              oddsData={localBetData}
             />
           </div>
         );

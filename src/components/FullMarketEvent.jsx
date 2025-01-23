@@ -51,6 +51,7 @@ const FullMarketEvent = () => {
   const competitionId = searchParams.get("competitionId");
   const [previousData, setPreviousData] = useState(null);
 
+
   useEffect(() => {
     const fetchData = async () => {
       if (eventType && eventId && marketId && competitionId) {
